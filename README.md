@@ -4,6 +4,7 @@
 
 - **Readme** lisätty  
 - *markdownia* harjoiteltu
+- Readme muutettu
 
 [gitlog.txt](https://github.com/hajame/otm-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)  
 
