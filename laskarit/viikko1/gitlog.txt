@@ -1,0 +1,100 @@
+commit 6720ce0eeedb929912a734a3c78f972928fb2b1f
+Author: hajame <harri.mehtala@gmail.com>
+Date:   Wed Mar 14 15:36:05 2018 +0200
+
+    juttu lisätty
+
+ tiedostoja/file1  | 0
+ tiedostoja/file2  | 0
+ tiedostoja/file22 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 427bc72b7dd9da1d448944ade9b7c4a35abdcc74
+Author: hajame <harri.mehtala@gmail.com>
+Date:   Wed Mar 14 15:29:44 2018 +0200
+
+    lisättiin tiedostoja
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit df76422c705d32b5595de6738361e0eba550fd34
+Author: hajame <harri.mehtala@gmail.com>
+Date:   Wed Mar 14 14:16:46 2018 +0200
+
+    eka.txt ja kolmas.txt muutettu
+
+ eka.txt    | 9 ++++-----
+ kolmas.txt | 5 ++++-
+ 2 files changed, 8 insertions(+), 6 deletions(-)
+
+commit 20fe941c9223d77a85aa9a9a91950c11e23855d3
+Author: hajame <harri.mehtala@gmail.com>
+Date:   Wed Mar 14 14:12:50 2018 +0200
+
+    tiedosto.txt -> eka.txt
+
+ eka.txt      | 31 +++++++++++++++++++++++++++++++
+ tiedosto.txt | 31 -------------------------------
+ 2 files changed, 31 insertions(+), 31 deletions(-)
+
+commit 9fff86752abc0291ce8e0109d8aa559e6d9232f3
+Author: hajame <harri.mehtala@gmail.com>
+Date:   Wed Mar 14 14:09:13 2018 +0200
+
+    toinen.txt poistettu
+
+ toinen.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit a6f94215d8faea6e22a7e57dd6428dce46fa1a3a
+Author: hajame <harri.mehtala@gmail.com>
+Date:   Wed Mar 14 14:02:55 2018 +0200
+
+    tiedosto.txt muokattu uudelleen
+
+ tiedosto.txt | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+commit 929eb163a79379b81e123f940d8fea71a403da6e
+Author: hajame <harri.mehtala@gmail.com>
+Date:   Wed Mar 14 13:59:40 2018 +0200
+
+    tiedosto.txt muokattu
+
+ tiedosto.txt | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+
+commit 9fe1b068246a82fdb284b8dde7ec2a25020a4434
+Author: hajame <harri.mehtala@gmail.com>
+Date:   Wed Mar 14 13:55:06 2018 +0200
+
+    muutoksia
+
+ kolmas.txt         | 1 +
+ stuff/tiedosto.txt | 0
+ toinen.text        | 1 +
+ toinen.txt         | 0
+ 4 files changed, 2 insertions(+)
+
+commit 72d5498f150f2b1fa1401e5ebf32fd9ffafb401b
+Author: hajame <harri.mehtala@gmail.com>
+Date:   Wed Mar 14 13:50:30 2018 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.text  | 0
+ 2 files changed, 1 insertion(+)
+
+commit 2befba5c3467b5269fd0f851f4f27ad7659dd0e5
+Author: hajame <harri.mehtala@gmail.com>
+Date:   Wed Mar 14 13:17:46 2018 +0200
+
+    tiedosto.txt luoto
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
