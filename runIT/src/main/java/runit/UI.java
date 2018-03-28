@@ -33,16 +33,27 @@ public class UI {
 
             System.out.print("-> ");
             String choice = scanner.nextLine();
-            input(choice);
+
+            if (choice.equals("x")) {
+                System.out.println("Goodbye!");
+                break;
+            } else {
+                input(choice);
+            }
 
         }
 
     }
 
     public void input(String input) {
-        if (input == "1") {
-
+        if (input.equals("1")) {
+            // todo new exercise
         }
+
+        if (input.equals("2")) {
+            // todo list exercises
+        }
+
     }
 
     public void menu() {
