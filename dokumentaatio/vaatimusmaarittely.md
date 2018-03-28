@@ -10,6 +10,12 @@ Ohjelma tarjoaa mahdollisuuden tarkastella yksittäisen lenkin tietoja. Lisäksi
 
 Alkuvaiheessa sovelluksella on ainoastaan yksi käyttäjärooli eli **normaali käyttäjä.** Myöhemmin sovellukseen saatetaan lisätä suuremmilla oikeuksilla varustettu **pääkäyttäjä**.
 
+## Käyttöliittymäluonnos
+
+![Hahmotelma käyttöliittymästä](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/UIMockUp.png)
+
+Ohjelma avautuu kirjautumisnäkymään, josta voidaan siirtyä uuden käyttäjän luomiseen tai kotinäkymään. Kotinäkymässä käyttäjä voi tarkastella ja lisätä lenkkejä, poistua tai siirtyä tilastonäkymään, joka kertoo tilastotietoa käyttäjän harjoittelusta. 
+
 ## Perusversion tarjoama toiminnallisuus
 
 ### Ennen kirjautumista
