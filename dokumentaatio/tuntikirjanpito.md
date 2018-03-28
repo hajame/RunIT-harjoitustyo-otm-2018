@@ -3,5 +3,6 @@
 
 | päivä |  h   | mitä tein  |
 | :----:|:-----| :-----|
-| 18.2. | 2    | määrittelydokumentin laadinta |
-| yht   | 2   | | 
+| 18.3. | 2    | määrittelydokumentin laadinta |
+| 28.3.|| 4    | käyttöliittymäluonnos, runIT projektin perustaminen
+| yht   | 6    |    | 
