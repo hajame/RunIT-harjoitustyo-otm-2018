@@ -54,4 +54,8 @@ Perusversion jälkeen järjestelmää täydennetään (jos aika sallii) seuraavi
 - pääkäyttäjä, joka voi näkee muiden käyttäjien lenkkitiedot ja voi muokata niitä
 - käyttäjätunnuksen poistaminen
     - lenkkitiedot poistuvat samalla
+- tavoitteet
+    - käyttäjä voi asettaa itselleen juoksutavoitteen
+        - esim 100 km / kk
+    - tavoite näytetään kirjautumisen jälkeisessä näkymässä
 
