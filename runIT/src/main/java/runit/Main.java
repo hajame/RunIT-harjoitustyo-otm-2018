@@ -5,14 +5,27 @@
  */
 package runit;
 
+import java.util.*;
+
 /**
  *
  * @author hajame
  */
+
+
+
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        
+        Scanner scanner = new Scanner(System.in);
+        
+        UI ui = new UI(scanner);
+        
+        ui.start();
+        System.out.println("...");
+        System.out.println("** end of program **");
+        
     }
     
 }
