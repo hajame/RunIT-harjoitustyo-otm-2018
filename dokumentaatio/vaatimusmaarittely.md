@@ -12,7 +12,7 @@ Alkuvaiheessa sovelluksella on ainoastaan yksi käyttäjärooli eli **normaali k
 
 ## Käyttöliittymäluonnos
 
-![Hahmotelma käyttöliittymästä](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/UIMockUp.png)
+![Hahmotelma käyttöliittymästä](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/UIMockUp2.png)
 
 Ohjelma avautuu kirjautumisnäkymään, josta voidaan siirtyä uuden käyttäjän luomiseen tai kotinäkymään. Kotinäkymässä käyttäjä voi tarkastella ja lisätä lenkkejä, poistua tai siirtyä tilastonäkymään, joka kertoo tilastotietoa käyttäjän harjoittelusta. 
 
