@@ -22,7 +22,7 @@ public class UI {
 
     public void start() {
         System.out.println("-----------------");
-        System.out.println("Welcome to RunIT!");
+        System.out.println("WELCOME TO RunIT!");
         System.out.println("");
         System.out.println("created by hajame");
         System.out.println("-----------------");
