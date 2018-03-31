@@ -1,4 +1,6 @@
-# OTM-harjoitustyö
+# OTM-harjoitustyö: RunIT
+
+Harjoitustyö kurssille Ohjelmistotekniikan menetelmät.
 
 ## Dokumentaatio
 
