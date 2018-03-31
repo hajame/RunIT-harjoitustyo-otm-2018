@@ -8,7 +8,7 @@ package runit;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
 
-class Exercise {
+public class Exercise {
     
     private Timestamp time;
     private int hours;

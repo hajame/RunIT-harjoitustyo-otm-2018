@@ -4,17 +4,30 @@
 
 [Vaatimusmäärittely](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
-[Työkaikakirjanpito](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
+[Työaikakirjanpito](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 
-## Tehtävät
-### Viikko1
+## Komentorivitoiminnot
 
-- **Readme** lisätty  
-- *markdownia* harjoiteltu
-- Readme muutettu (kaksi kertaa)
+### Ohjelman suorittaminen
 
+Ohjelman voi suorittaa kansiossa _runIT_ komennolla
 
-[gitlog.txt](https://github.com/hajame/otm-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)  
+```
+mvn compile exec:java -Dexec.mainClass=runit.Main
+```
 
-[komentorivi.txt](https://github.com/hajame/otm-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
+### Testaus
 
+Testit suoritetaan komennolla
+
+```
+mvn test
+```
+
+Testikattavuusraportti luodaan komennolla
+
+```
+mvn test jacoco:report
+```
+
+Kattavuusraporttia voi tarkastella avaamalla selaimella tiedosto _target/site/jacoco/index.html_
