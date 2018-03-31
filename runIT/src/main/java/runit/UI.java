@@ -12,9 +12,11 @@ public class UI {
 
     private final Scanner scanner;
     private User user;
+    private Logic logic;
 
     public UI(Scanner scanner) {
         this.scanner = scanner;
+        this.logic = new Logic(scanner);
         this.user = null;
     }
 
@@ -26,7 +28,7 @@ public class UI {
         System.out.println("-----------------");
         System.out.println("");
 
-        login();
+        this.user = logic.login();
 
         while (true) {
             menu();
@@ -47,46 +49,22 @@ public class UI {
 
     public void input(String input) {
         if (input.equals("1")) {
-            // todo new exercise
+            logic.addExercise(user);
         }
 
         if (input.equals("2")) {
-            // todo list exercises
+            logic.printExercises(user);
         }
 
     }
 
     public void menu() {
-        System.out.println("Main menu:");
+        System.out.println("MAIN MENU");
         System.out.println("...");
         System.out.println("[1] Record a new exercise");
         System.out.println("[2] List all exercises");
         System.out.println("[x] Quit");
     }
 
-    public void login() {
-
-        String name;
-        String pass;
-
-        while (true) {
-            System.out.println("Please log in:");
-            System.out.print("Enter Username -> ");
-            name = scanner.nextLine();
-
-            if (name.isEmpty()) {
-                System.out.println("Please enter a username.");
-                continue;
-            }
-            System.out.print("Enter Password -> ");
-            pass = scanner.nextLine();
-
-            break;
-        }
-
-        this.user = new User(name, pass);
-        System.out.println("Hello " + user.username + ", nice to meet you! :)");
-
-    }
 
 }

@@ -6,9 +6,10 @@
 package runit;
 
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 
 class Exercise {
-
+    
     private Timestamp time;
     private int hours;
     private int minutes;
@@ -29,9 +30,73 @@ class Exercise {
     
     public double durationAsHours() {
     
-        
-        return 1.0 * (this.hours + this.minutes / 60 + this.seconds / 60 / 60);
+        return 1.0 * ((double) this.hours + (double) this.minutes / 60 + (double) this.seconds / 60 / 60);
     }
+
+    public Timestamp getTime() {
+        return time;
+    }
+
+    public void setTime(Timestamp time) {
+        this.time = time;
+    }
+
+    public int getHours() {
+        return hours;
+    }
+
+    public void setHours(int hours) {
+        this.hours = hours;
+    }
+
+    public int getMinutes() {
+        return minutes;
+    }
+
+    public void setMinutes(int minutes) {
+        this.minutes = minutes;
+    }
+
+    public int getSeconds() {
+        return seconds;
+    }
+
+    public void setSeconds(int seconds) {
+        this.seconds = seconds;
+    }
+
+    public double getAvgSpeed() {
+        return avgSpeed;
+    }
+
+    public void setAvgSpeed(double avgSpeed) {
+        this.avgSpeed = avgSpeed;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+    
+    public String time() {
+        return time.toString().substring(0, 16);
+    }
+    
+    @Override
+    public String toString() {
+        
+        DecimalFormat format = new DecimalFormat("00");
+        DecimalFormat doubleDecimal = new DecimalFormat("#0.00");
+        
+        
+        return time()+ ", duration " + format.format(hours) + ":" + format.format(minutes) + ":" + format.format(seconds)
+                + ", avgSpeed " + doubleDecimal.format(avgSpeed) + " km/h, distance " + doubleDecimal.format(this.distance) + " km";
+    }
+    
+    
     
     
     

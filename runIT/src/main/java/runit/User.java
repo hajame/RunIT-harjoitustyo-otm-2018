@@ -20,6 +20,37 @@ public class User {
         this.password = password;
         this.history = new ArrayList<>();
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<Exercise> getHistory() {
+        return history;
+    }
+
+    public void setHistory(List<Exercise> history) {
+        this.history = history;
+    }
+
+    @Override
+    public String toString() {
+        return username;
+    }
+    
+
     
     
 
