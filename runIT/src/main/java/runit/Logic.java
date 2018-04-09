@@ -16,7 +16,10 @@ public class Logic {
         this.scanner = scanner;
     }
 
-    public void printExercises(User user) {
+    // muuta list exercises
+    // printtaa UI:n puolella
+    
+    public void printExercises(User user) { 
         
         if (user.history.isEmpty()) {
             System.out.println("...");
