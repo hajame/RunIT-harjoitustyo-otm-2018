@@ -31,12 +31,9 @@ public class Main {
 //        user.printExercises();
 
         Scanner scanner = new Scanner(System.in);
-
         UI ui = new UI(scanner);
-
         ui.start();
-        System.out.println("...");
-        System.out.println("** end of program **");
+
 
     }
 

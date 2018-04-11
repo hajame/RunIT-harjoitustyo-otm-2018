@@ -11,9 +11,9 @@ import java.util.*;
 
 public class User {
     
-    String username;
-    String password;
-    List<Exercise> history;
+    private String username;
+    private String password;
+    private ArrayList<Exercise> history;
 
     public User(String username, String password) {
         this.username = username;
@@ -23,6 +23,10 @@ public class User {
 
     public String getUsername() {
         return username;
+    }
+    
+    public void addExercise(Exercise exercise) {
+        history.add(exercise);
     }
 
     public void setUsername(String username) {
@@ -41,7 +45,7 @@ public class User {
         return history;
     }
 
-    public void setHistory(List<Exercise> history) {
+    public void setHistory(ArrayList<Exercise> history) {
         this.history = history;
     }
 
