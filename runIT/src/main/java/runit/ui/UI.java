@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package runit;
+package runit.ui;
 
 import java.sql.Timestamp;
 import java.util.*;
+import runit.domain.Exercise;
+import runit.domain.Logic;
 
 public class UI {
 
