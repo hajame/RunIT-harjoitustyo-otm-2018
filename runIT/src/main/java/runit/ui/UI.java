@@ -15,9 +15,9 @@ public class UI {
     private final Scanner scanner;
     private Logic logic;
 
-    public UI(Scanner scanner) {
+    public UI(Scanner scanner, Logic logic) {
         this.scanner = scanner;
-        this.logic = new Logic(scanner);
+        this.logic = logic;
     }
 
     public void start() {

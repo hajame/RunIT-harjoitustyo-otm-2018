@@ -5,15 +5,13 @@
  */
 package runit.domain;
 import java.util.List;
-import java.util.Scanner;
 
 public class Logic {
-
-    private Scanner scanner;
+    
     private User user;
 
-    public Logic(Scanner scanner) {
-        this.scanner = scanner;
+    public Logic() {
+        
     }
 
     // muuta list exercises
