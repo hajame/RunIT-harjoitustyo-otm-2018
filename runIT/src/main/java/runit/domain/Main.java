@@ -32,7 +32,8 @@ public class Main {
 //        user.printExercises();
 
         Scanner scanner = new Scanner(System.in);
-        UI ui = new UI(scanner);
+        Logic logic = new Logic();
+        UI ui = new UI(scanner, logic);
         ui.start();
 
 
