@@ -15,7 +15,7 @@ Harjoitustyö kurssille Ohjelmistotekniikan menetelmät.
 Ohjelman voi suorittaa kansiossa _runIT_ komennolla
 
 ```
-mvn compile exec:java -Dexec.mainClass=runit.Main
+mvn compile exec:java -Dexec.mainClass=runit.domain.Main
 ```
 
 ### Testaus
