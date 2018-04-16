@@ -52,7 +52,7 @@ public class UI {
         String pass;
 
         while (true) {
-            System.out.println("Please log in:");
+            System.out.println("Please log in: (username: 'test', password: 'pass')");
             System.out.print("Enter Username -> ");
             name = scanner.nextLine();
 
@@ -79,7 +79,7 @@ public class UI {
     public void menu() {
         System.out.println("MAIN MENU");
         System.out.println("...");
-        System.out.println("[1] Record a new exercise");
+        System.out.println("[1] Record a new exercise (not supported with database yet)");
         System.out.println("[2] List all exercises");
         System.out.println("[x] Quit");
     }
