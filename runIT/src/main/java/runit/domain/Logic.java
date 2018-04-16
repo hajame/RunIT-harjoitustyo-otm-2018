@@ -20,7 +20,7 @@ public class Logic {
     public Logic() {
         try {
             File file = new File("db", "database.db");
-            database = new Database("jdbc:sqlite:"+file.getAbsolutePath());
+            database = new Database("jdbc:sqlite:" + file.getAbsolutePath());
         } catch (Exception e) {
             System.out.println("Incorrect database address. --- " + e);
         }
@@ -28,9 +28,9 @@ public class Logic {
     }
 
     public List<Exercise> getHistory() {
-        
+
         ExerciseDao dao = new ExerciseDao(database);
-        
+
         try {
             List<Exercise> exercises = dao.findAllByUser(user);
             user.setHistory(exercises);
@@ -50,7 +50,7 @@ public class Logic {
                 System.out.println("No such user.");
                 return false;
             }
-            if (user.getPassword().equals(pass)) {                
+            if (user.getPassword().equals(pass)) {
                 this.user = user;
                 return true;
             } else {

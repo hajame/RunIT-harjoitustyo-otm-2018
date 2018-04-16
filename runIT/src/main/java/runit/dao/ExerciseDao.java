@@ -28,10 +28,9 @@ public class ExerciseDao implements Dao<Exercise, Integer> {
     public Exercise findOne(Integer key) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 
     public List<Exercise> findAllByUser(User user) throws SQLException {
-               
+
         List<Exercise> exercises = new ArrayList<>();
 
         try (Connection conn = database.getConnection()) {
@@ -39,11 +38,11 @@ public class ExerciseDao implements Dao<Exercise, Integer> {
                     + "WHERE username = ? AND user_id = user.id");
             stmt.setString(1, user.getUsername());
             ResultSet result = stmt.executeQuery();
-            
-                while (result.next()) {
-                    Timestamp timestamp = Timestamp.valueOf(result.getString("time"));
-                    exercises.add(new Exercise(timestamp, result.getInt("duration"), result.getDouble("distance")));
-                }
+
+            while (result.next()) {
+                Timestamp timestamp = Timestamp.valueOf(result.getString("time"));
+                exercises.add(new Exercise(timestamp, result.getInt("duration"), result.getDouble("distance")));
+            }
         }
 
         return exercises;
