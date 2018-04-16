@@ -9,28 +9,22 @@ import java.sql.Timestamp;
 import java.text.DecimalFormat;
 
 public class Exercise {
-    
+
     private Timestamp time;
-    private int hours;
-    private int minutes;
-    private int seconds;
+    private int duration;
     private double avgSpeed;
     private double distance;
 
-    public Exercise(Timestamp time, int hours, int minutes, int seconds, double distance) {
+    public Exercise(Timestamp time, int duration, double distance) {
         this.time = time;
-        this.hours = hours;
-        this.minutes = minutes;
-        this.seconds = seconds;
+        this.duration = duration;
         this.distance = distance;
         this.avgSpeed = this.distance / durationAsHours();
     }
 
-
-    
     public double durationAsHours() {
-    
-        return 1.0 * ((double) this.hours + (double) this.minutes / 60 + (double) this.seconds / 60 / 60);
+
+        return 1.0 * ((double) this.duration / 60 / 60);
     }
 
     public Timestamp getTime() {
@@ -41,28 +35,12 @@ public class Exercise {
         this.time = time;
     }
 
-    public int getHours() {
-        return hours;
+    public int getDuration() {
+        return duration;
     }
 
-    public void setHours(int hours) {
-        this.hours = hours;
-    }
-
-    public int getMinutes() {
-        return minutes;
-    }
-
-    public void setMinutes(int minutes) {
-        this.minutes = minutes;
-    }
-
-    public int getSeconds() {
-        return seconds;
-    }
-
-    public void setSeconds(int seconds) {
-        this.seconds = seconds;
+    public void setDuration(int seconds) {
+        this.duration = seconds;
     }
 
     public double getAvgSpeed() {
@@ -80,24 +58,25 @@ public class Exercise {
     public void setDistance(double distance) {
         this.distance = distance;
     }
-    
+
     public String time() {
         return time.toString().substring(0, 16);
     }
-    
+
+    public String durationToString() {
+        int hours = duration / 3600;
+        int minutes = (duration % 3600) / 60;
+        int seconds = duration % 60;
+
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+    }
+
     @Override
     public String toString() {
-        
-        DecimalFormat format = new DecimalFormat("00");
+
         DecimalFormat doubleDecimal = new DecimalFormat("#0.00");
-        
-        
-        return time()+ ", duration " + format.format(hours) + ":" + format.format(minutes) + ":" + format.format(seconds)
-                + ", avgSpeed " + doubleDecimal.format(avgSpeed) + " km/h, distance " + doubleDecimal.format(this.distance) + " km";
+
+        return time() + ", duration " + durationToString() + ", avgSpeed " + doubleDecimal.format(avgSpeed) + " km/h, distance " + doubleDecimal.format(this.distance) + " km";
     }
-    
-    
-    
-    
-    
+
 }

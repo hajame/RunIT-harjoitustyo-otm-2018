@@ -17,20 +17,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-//        test code 
-
-//        User user = new User("harri", "joku");
-//        
-//        Timestamp timestamp = Timestamp.valueOf("2018-01-28 18:33:00.0");
-//        Timestamp timestamp2 = Timestamp.valueOf("2018-01-30 18:34:00.0");
-//        
-//        user.history.add(new Exercise(timestamp, 0, 30, 0, 5.0));
-//        user.history.add(new Exercise(timestamp2, 0, 32, 0, 5.0));
-//
-//        System.out.println(user.history.get(0));
-//        System.out.println(user.history.get(1));
-//        user.printExercises();
-
         Scanner scanner = new Scanner(System.in);
         Logic logic = new Logic();
         UI ui = new UI(scanner, logic);
