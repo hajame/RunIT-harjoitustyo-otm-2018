@@ -34,7 +34,6 @@ Ohjelma avautuu kirjautumisnäkymään, josta voidaan siirtyä uuden käyttäjä
         - päivämäärä ja aika  
         - lenkin kesto
         - lenkin pituus
-        - kuvaus / desc
 - käyttäjä saa halutessaan näkyviin listan kaikista lenkeistä
     - listalta voi valita yksittäisen lenkin ja tarkastella sen tietoja
 - käyttäjä voi siirtyä tilastonäkymään, jossa näkyy 
