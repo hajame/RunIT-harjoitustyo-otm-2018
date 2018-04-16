@@ -13,7 +13,7 @@ public class User {
     
     private String username;
     private String password;
-    private ArrayList<Exercise> history;
+    private List<Exercise> history;
 
     public User(String username, String password) {
         this.username = username;
@@ -45,7 +45,7 @@ public class User {
         return history;
     }
 
-    public void setHistory(ArrayList<Exercise> history) {
+    public void setHistory(List<Exercise> history) {
         this.history = history;
     }
 
