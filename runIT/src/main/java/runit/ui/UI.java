@@ -165,7 +165,10 @@ public class UI {
             }
             break;
         }
-        Exercise exercise = new Exercise(timestamp, hours, minutes, seconds, distance);
+
+        int totalSeconds = hours * 60 * 60 + minutes * 60 + seconds;
+
+        Exercise exercise = new Exercise(timestamp, totalSeconds, distance);
         logic.addExercise(exercise);
         System.out.println(exercise);
         System.out.println("*Exercise recorded successfully*");

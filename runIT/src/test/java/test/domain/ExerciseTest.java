@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package test;
+package test.domain;
 
 import runit.domain.Exercise;
 import java.sql.Timestamp;
@@ -38,7 +38,7 @@ public class ExerciseTest {
         
         Timestamp timestamp = Timestamp.valueOf("2018-01-31 10:10:10.0");
         
-        exercise = new Exercise(timestamp, 1, 0, 0, 10.00);
+        exercise = new Exercise(timestamp, 3600, 10.00);
         
         
     }

@@ -14,8 +14,6 @@ public class Logic {
         
     }
 
-    // muuta list exercises
-    // printtaa UI:n puolella
     public List<Exercise> getHistory() {
         return user.getHistory();
     }
