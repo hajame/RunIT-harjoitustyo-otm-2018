@@ -65,9 +65,14 @@ public class UI {
 
             break;
         }
-        logic.setUser(name, pass);
-        System.out.println("Hello " + logic.getUser().getUsername() + ", nice to meet you! :)");
-        System.out.println("");
+        boolean login = logic.setUser(name, pass);
+
+        if (!login) {
+            System.out.println("Wrong username or password.");
+        } else {
+            System.out.println("Hello " + logic.getUser().getUsername() + ", nice to meet you! :)");
+            System.out.println("");
+        }
 
     }
 
@@ -85,13 +90,13 @@ public class UI {
         }
 
         if (input.equals("2")) {
+            List<Exercise> history = logic.getHistory();
+
             if (logic.getUser().getHistory().isEmpty()) {
                 System.out.println("...");
                 System.out.println("No exercises.");
                 System.out.println("");
             } else {
-                List<Exercise> history = logic.getHistory();
-
                 System.out.println("...");
                 System.out.println("Your exercises, " + logic.getUser().getUsername() + ":");
                 for (Exercise exercise : history) {

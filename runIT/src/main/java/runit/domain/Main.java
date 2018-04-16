@@ -22,7 +22,6 @@ public class Main {
         UI ui = new UI(scanner, logic);
         ui.start();
 
-
     }
 
 }

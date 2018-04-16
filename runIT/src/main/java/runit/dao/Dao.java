@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package runit.dao;
 
 import java.sql.*;
 import java.util.*;
@@ -15,7 +15,6 @@ import java.util.*;
 public interface Dao<T, K> {
     T findOne(K key) throws SQLException;
     List<T> findAll() throws SQLException;
-    T save(T object) throws SQLException;
-    T update(T object) throws SQLException;
+    T saveOrUpdate(T object) throws SQLException;
     void delete(K key) throws SQLException;
 }
