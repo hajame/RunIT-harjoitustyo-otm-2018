@@ -9,5 +9,5 @@
 | 30.3.| 2    | Excercise luokka |
 | 31.3. | 5    | Logiikka erotettu UI:stä. Harjoitusten lisääminen ja listaaminen toimii (ei pysyväistallennusta). Yksi testi luotu. README:n päivitys. |
 | 11.4. | 3 | Logiikan ja Tekstikäyttöliittymän erottamista. |
-| 16.4. | 6 | Dao-implementaatio. |
-| yht   | 20    |    | 
+| 16.4. | 8 | Dao-implementaatio. Testikattavuuden nostaminen. Luokka/pakkauskaavio. Checkstyle ja tyylin korjaus. |
+| yht   | 22    |    | 
