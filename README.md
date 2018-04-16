@@ -17,6 +17,7 @@ Ohjelman voi suorittaa kansiossa _runIT_ komennolla
 ```
 mvn compile exec:java -Dexec.mainClass=runit.domain.Main
 ```
+Käynnissä olevan Dao-mallin toteutuksen vuoksi ohelmaan ei voi vielä luoda uusia käyttäjiä tai harjoituksia. Voit kirjautua testikäyttäjänä tunnuksella _test_ ja salasanalla _pass_. Lisäksi voit tulostaa listan harjoituksista.
 
 ### Testaus
 
@@ -33,3 +34,13 @@ mvn test jacoco:report
 ```
 
 Kattavuusraporttia voi tarkastella avaamalla selaimella tiedosto _target/site/jacoco/index.html_
+
+### Checkstyle
+
+Tiedostoon [checkstyle.xml](https://github.com/hajame/otm-harjoitustyo/blob/master/runIT/checkstyle.xml) määritellyt tarkistukset suoritetaan komennolla
+
+```
+mvn jxr:jxr checkstyle:checkstyle
+```
+
+Mahdolliset virheilmoitukset selviävät avaamalla selaimella tiedosto _target/site/checkstyle.html_
