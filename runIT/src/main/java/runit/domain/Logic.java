@@ -77,8 +77,21 @@ public class Logic {
         return user;
     }
 
-    public void addExercise(Exercise exercise) {
+    public Exercise addExercise(Exercise exercise) {
+        exercise.setUser(user);
         user.addExercise(exercise);
+        
+        ExerciseDao dao = new ExerciseDao(database);
+        try {
+            Exercise a = dao.save(exercise);
+            System.out.println("Onnistui");
+            return a;
+        } catch (Exception e) {
+            System.out.println("Ei onnistunut.");
+            return null;
+        }
+            
+        
     }
 
 }

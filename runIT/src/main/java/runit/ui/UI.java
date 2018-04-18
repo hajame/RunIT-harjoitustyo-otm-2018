@@ -252,8 +252,8 @@ public class UI {
         int totalSeconds = hours * 60 * 60 + minutes * 60 + seconds;
 
         Exercise exercise = new Exercise(timestamp, totalSeconds, distance);
-        logic.addExercise(exercise);
-        System.out.println(exercise);
+        Exercise a = logic.addExercise(exercise);
+        System.out.println(a);
         System.out.println("*Exercise recorded successfully*");
         System.out.println();
 
