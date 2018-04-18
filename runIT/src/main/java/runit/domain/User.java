@@ -11,16 +11,26 @@ import java.util.*;
 
 public class User {
     
+    private Integer id;
     private String username;
     private String password;
     private List<Exercise> history;
 
     public User(String username, String password) {
+        this.id = null;
         this.username = username;
         this.password = password;
         this.history = new ArrayList<>();
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
     public String getUsername() {
         return username;
     }

@@ -40,27 +40,37 @@ public class Logic {
         }
     }
 
-    public boolean setUser(String name, String pass) {
+    public String loginUser(String name, String pass) {
 
         UserDao dao = new UserDao(database);
 
         try {
             User user = dao.findOne(name);
             if (user == null) {
-                System.out.println("No such user.");
-                return false;
+                return "User not found";
             }
             if (user.getPassword().equals(pass)) {
                 this.user = user;
-                return true;
+                return "Login successful";
             } else {
-                System.out.println("Wrong password");
-                return false;
+                return "Wrong password";
             }
         } catch (Exception e) {
-            return false;
+            return "Error: " + e.toString();
         }
+    }
 
+    public String signupUser(String name, String pass) {
+
+        UserDao dao = new UserDao(database);;
+
+        try {
+            User user = dao.saveOrUpdate(new User(name, pass));
+            this.user = user;
+            return "Login successful";
+        } catch (Exception e) {
+            return "Error: " + e.toString();
+        }
     }
 
     public User getUser() {

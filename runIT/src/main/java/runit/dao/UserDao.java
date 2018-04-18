@@ -30,10 +30,10 @@ public class UserDao implements Dao<User, String> {
         ResultSet rs = stmt.executeQuery();
         if (!rs.next()) {
             return null;
-
         }
 
         User a = new User(rs.getString("username"), rs.getString("password"));
+        a.setId(rs.getInt("id"));
         stmt.close();
         rs.close();
         conn.close();
@@ -47,7 +47,39 @@ public class UserDao implements Dao<User, String> {
 
     @Override
     public User saveOrUpdate(User user) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        if (findOne(user.getUsername()) == null) {
+            User a = save(user);
+            return a;
+        }
+
+        return update(user);
+    }
+
+    public User save(User user) throws SQLException {
+        Connection conn = database.getConnection();
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO User (username, password) values (?, ?)");
+        stmt.setString(1, user.getUsername());
+        stmt.setString(2, user.getPassword());
+        stmt.executeUpdate();
+        stmt.close();
+        conn.close();
+
+        User newUser = findOne(user.getUsername());
+        return newUser;
+    }
+
+    public User update(User user) throws SQLException {
+        Connection conn = database.getConnection();
+        PreparedStatement stmt = conn.prepareStatement("UPDATE USER SET password = ? WHERE username = ?");
+        stmt.setString(1, user.getPassword());
+        stmt.setString(2, user.getUsername());
+        stmt.executeUpdate();
+        stmt.close();
+        conn.close();
+
+        User updatedUser = findOne(user.getUsername());
+        return updatedUser;
     }
 
     @Override

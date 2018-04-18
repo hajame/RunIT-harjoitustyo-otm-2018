@@ -28,8 +28,27 @@ public class UI {
         System.out.println("-----------------");
         System.out.println("");
 
-        login();
+        
 
+        while (true) {
+            signupmenu();
+
+            System.out.print("-> ");
+            String choice = scanner.nextLine();
+
+            if (choice.equals("x")) {
+                System.out.println("...");
+                System.out.println("Goodbye!");
+                return;
+            } else {
+                
+                boolean login = signupinput(choice);
+                if (login == true) {
+                    break;
+                }
+            }
+        }
+        
         while (true) {
             menu();
 
@@ -39,14 +58,45 @@ public class UI {
             if (choice.equals("x")) {
                 System.out.println("...");
                 System.out.println("Goodbye!");
-                break;
+                return;
             } else {
                 input(choice);
             }
         }
     }
 
-    public void login() {
+    public boolean signup() {
+
+        String name;
+        String pass;
+
+        while (true) {
+            System.out.println("Create a new user");
+            System.out.print("Enter Username -> ");
+            name = scanner.nextLine();
+
+            if (name.isEmpty()) {
+                System.out.println("Please enter a username.");
+                continue;
+            }
+            System.out.print("Enter Password -> ");
+            pass = scanner.nextLine();
+
+            String message = logic.signupUser(name, pass);
+
+            if (!message.equals("Login successful")) {
+                System.out.println(message);
+                return false;
+            } else {
+                System.out.println("Hello " + logic.getUser().getUsername() + ", nice to meet you! :)");
+                System.out.println("");
+                return true;
+            }
+        }
+
+    }
+
+    public boolean login() {
 
         String name;
         String pass;
@@ -63,15 +113,16 @@ public class UI {
             System.out.print("Enter Password -> ");
             pass = scanner.nextLine();
 
-            break;
-        }
-        boolean login = logic.setUser(name, pass);
+            String message = logic.loginUser(name, pass);
 
-        if (!login) {
-            System.out.println("Wrong username or password.");
-        } else {
-            System.out.println("Hello " + logic.getUser().getUsername() + ", nice to meet you! :)");
-            System.out.println("");
+            if (!message.equals("Login successful")) {
+                System.out.println(message);
+                return false;
+            } else {
+                System.out.println("Hello " + logic.getUser().getUsername() + ", nice to meet you! :)");
+                System.out.println("");
+                return true;
+            }
         }
 
     }
@@ -81,6 +132,15 @@ public class UI {
         System.out.println("...");
         System.out.println("[1] Record a new exercise (not supported with database yet)");
         System.out.println("[2] List all exercises");
+        System.out.println("[x] Quit");
+    }
+ 
+    public void signupmenu() {
+        System.out.println("LOGIN");
+        System.out.println("...");
+        System.out.println("[1] Log in (username: 'test', password: 'pass')");
+        System.out.println("[2] Create a user");
+        System.out.println("[3] Delete a user");
         System.out.println("[x] Quit");
     }
 
@@ -105,6 +165,24 @@ public class UI {
                 System.out.println("");
             }
         }
+    }
+    public boolean signupinput(String input) {
+        
+        boolean success = false;
+        if (input.equals("1")) {
+            success = login();
+        }
+
+        if (input.equals("2")) {
+            success = signup();
+        }
+        if (input.equals("3")) {
+            System.out.println("Not supported yet.");
+            success = false;
+        }
+        
+        return success;
+        
     }
 
     public void addExercise() {
