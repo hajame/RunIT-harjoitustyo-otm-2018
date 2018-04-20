@@ -53,6 +53,6 @@ public class ExerciseTest {
      @Test
      public void toStringTest() {
          String string = exercise.toString();
-         assertEquals("2018-01-31 10:10, duration 01:00:00, avgSpeed 10.00 km/h, distance 10.00 km", string);
+         assertEquals("id (null) 2018-01-31 10:10, duration 01:00:00, avgSpeed 10.00 km/h, distance 10.00 km", string);
      }
 }

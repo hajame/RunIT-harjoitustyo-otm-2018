@@ -6,7 +6,10 @@
 package runit.domain;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.List;
 import runit.dao.ExerciseDao;
 import runit.dao.UserDao;
@@ -19,12 +22,12 @@ public class Logic {
 
     public Logic() {
         try {
-            File file = new File("db", "database.db");
-            database = new Database("jdbc:sqlite:" + file.getAbsolutePath());
+            File file = new File("database.db");
+            database = new Database("jdbc:sqlite:" +file.getAbsolutePath());
+            database.init();
         } catch (Exception e) {
             System.out.println("Incorrect database address. --- " + e);
         }
-
     }
 
     public List<Exercise> getHistory() {
@@ -62,7 +65,7 @@ public class Logic {
 
     public String signupUser(String name, String pass) {
 
-        UserDao dao = new UserDao(database);;
+        UserDao dao = new UserDao(database);
 
         try {
             User user = dao.saveOrUpdate(new User(name, pass));
@@ -80,7 +83,7 @@ public class Logic {
     public Exercise addExercise(Exercise exercise) {
         exercise.setUser(user);
         user.addExercise(exercise);
-        
+
         ExerciseDao dao = new ExerciseDao(database);
         try {
             Exercise a = dao.save(exercise);
@@ -90,8 +93,7 @@ public class Logic {
             System.out.println("Ei onnistunut.");
             return null;
         }
-            
-        
+
     }
 
 }
