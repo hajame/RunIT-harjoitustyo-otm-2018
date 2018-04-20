@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 import java.text.DecimalFormat;
 
 public class Exercise {
-    
+
     private User user;
     private Integer id;
     private Timestamp time;
@@ -41,7 +41,7 @@ public class Exercise {
     public void setUser(User user) {
         this.user = user;
     }
-    
+
     public double durationAsHours() {
 
         return 1.0 * ((double) this.duration / 60 / 60);
@@ -96,7 +96,7 @@ public class Exercise {
 
         DecimalFormat doubleDecimal = new DecimalFormat("#0.00");
 
-        return "id ("+id+") " + time() + ", duration " + durationToString() + ", avgSpeed " + doubleDecimal.format(avgSpeed) + " km/h, distance " + doubleDecimal.format(this.distance) + " km";
+        return "id (" + id + ") " + time() + ", duration " + durationToString() + ", avgSpeed " + doubleDecimal.format(avgSpeed) + " km/h, distance " + doubleDecimal.format(this.distance) + " km";
     }
 
 }

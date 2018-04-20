@@ -102,7 +102,7 @@ public class ExerciseDao implements Dao<Exercise, Exercise> {
         return newExercise;
     }
 
-    public Exercise Update(Exercise exercise) throws SQLException {
+    public Exercise update(Exercise exercise) throws SQLException {
 
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 

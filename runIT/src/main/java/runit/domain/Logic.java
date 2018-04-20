@@ -6,10 +6,6 @@
 package runit.domain;
 
 import java.io.File;
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.List;
 import runit.dao.ExerciseDao;
 import runit.dao.UserDao;
@@ -23,7 +19,7 @@ public class Logic {
     public Logic() {
         try {
             File file = new File("database.db");
-            database = new Database("jdbc:sqlite:" +file.getAbsolutePath());
+            database = new Database("jdbc:sqlite:" + file.getAbsolutePath());
             database.init();
         } catch (Exception e) {
             System.out.println("Incorrect database address. --- " + e);

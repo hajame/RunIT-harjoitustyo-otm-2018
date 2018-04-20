@@ -28,10 +28,18 @@ public class UI {
         System.out.println("-----------------");
         System.out.println("");
 
-        
+        signupmenu();
+    }
+
+    public void signupmenu() {
 
         while (true) {
-            signupmenu();
+            System.out.println("LOGIN");
+            System.out.println("...");
+            System.out.println("[1] Log in (test user: 'test', password: 'pass')");
+            System.out.println("[2] Create a user");
+            System.out.println("[3] Delete a user");
+            System.out.println("[x] Quit");
 
             System.out.print("-> ");
             String choice = scanner.nextLine();
@@ -41,28 +49,32 @@ public class UI {
                 System.out.println("Goodbye!");
                 return;
             } else {
-                
+
                 boolean login = signupinput(choice);
                 if (login == true) {
-                    break;
+                    menu();
                 }
             }
         }
-        
-        while (true) {
-            menu();
+    }
 
-            System.out.print("-> ");
-            String choice = scanner.nextLine();
+    public boolean signupinput(String input) {
 
-            if (choice.equals("x")) {
-                System.out.println("...");
-                System.out.println("Goodbye!");
-                return;
-            } else {
-                input(choice);
-            }
+        boolean success = false;
+        if (input.equals("1")) {
+            success = login();
         }
+
+        if (input.equals("2")) {
+            success = signup();
+        }
+        if (input.equals("3")) {
+            System.out.println("Not supported yet.");
+            success = false;
+        }
+
+        return success;
+
     }
 
     public boolean signup() {
@@ -102,7 +114,7 @@ public class UI {
         String pass;
 
         while (true) {
-            System.out.println("Please log in: (username: 'test', password: 'pass')");
+            System.out.println("Please log in: (test user: 'test', password: 'pass')");
             System.out.print("Enter Username -> ");
             name = scanner.nextLine();
 
@@ -128,20 +140,26 @@ public class UI {
     }
 
     public void menu() {
-        System.out.println("MAIN MENU");
-        System.out.println("...");
-        System.out.println("[1] Record a new exercise (not supported with database yet)");
-        System.out.println("[2] List all exercises");
-        System.out.println("[x] Quit");
-    }
- 
-    public void signupmenu() {
-        System.out.println("LOGIN");
-        System.out.println("...");
-        System.out.println("[1] Log in (username: 'test', password: 'pass')");
-        System.out.println("[2] Create a user");
-        System.out.println("[3] Delete a user");
-        System.out.println("[x] Quit");
+
+        while (true) {
+
+            System.out.println("MAIN MENU");
+            System.out.println("...");
+            System.out.println("[1] Record a new exercise");
+            System.out.println("[2] List all exercises");
+            System.out.println("[x] Log out");
+
+            System.out.print("-> ");
+            String menuChoice = scanner.nextLine();
+
+            if (menuChoice.equals("x")) {
+                System.out.println("...");
+                System.out.println("Goodbye!");
+                break;
+            } else {
+                input(menuChoice);
+            }
+        }
     }
 
     public void input(String input) {
@@ -165,24 +183,6 @@ public class UI {
                 System.out.println("");
             }
         }
-    }
-    public boolean signupinput(String input) {
-        
-        boolean success = false;
-        if (input.equals("1")) {
-            success = login();
-        }
-
-        if (input.equals("2")) {
-            success = signup();
-        }
-        if (input.equals("3")) {
-            System.out.println("Not supported yet.");
-            success = false;
-        }
-        
-        return success;
-        
     }
 
     public void addExercise() {
@@ -256,7 +256,5 @@ public class UI {
         System.out.println(a);
         System.out.println("*Exercise recorded successfully*");
         System.out.println();
-
     }
-
 }

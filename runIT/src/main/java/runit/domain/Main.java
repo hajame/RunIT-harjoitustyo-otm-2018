@@ -6,7 +6,6 @@
 package runit.domain;
 
 import runit.ui.UI;
-import java.sql.Timestamp;
 import java.util.*;
 
 /**
