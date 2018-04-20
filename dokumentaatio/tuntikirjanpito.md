@@ -11,4 +11,5 @@
 | 11.4. | 3 | Logiikan ja Tekstikäyttöliittymän erottamista. |
 | 16.4. | 8 | Dao-implementaatio. Testikattavuuden nostaminen. Luokka/pakkauskaavio. Checkstyle ja tyylin korjaus. |
 | 18.4. | 4 | Käyttäjän ja Harjoituksen lisääminen. |
-| yht   | 26    |    | 
+| 20.4. | 3 | Tietokannan luonti suorituksen yhteydessä. Ensimmäisen jar-tiedoston luonti. Käyttöliittymän muokkausta |
+| yht   | 29    |    | 
