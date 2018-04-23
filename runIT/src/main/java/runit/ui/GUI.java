@@ -218,7 +218,7 @@ public class GUI extends Application {
         });
 
         // seutp primary stage
-        primaryStage.setTitle("Exercises");
+        primaryStage.setTitle("runIT");
         primaryStage.setScene(loginScene);
         primaryStage.show();
         primaryStage.setOnCloseRequest(e -> {
