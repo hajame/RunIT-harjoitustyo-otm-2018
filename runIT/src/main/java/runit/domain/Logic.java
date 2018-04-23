@@ -58,6 +58,10 @@ public class Logic {
             return "Error: " + e.toString();
         }
     }
+    
+    public void logout() {
+        this.user = null;
+    }
 
     public String signupUser(String name, String pass) {
 
