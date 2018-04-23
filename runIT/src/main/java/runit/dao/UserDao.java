@@ -83,8 +83,14 @@ public class UserDao implements Dao<User, String> {
     }
 
     @Override
-    public void delete(String key) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void delete(String username) throws SQLException {
+        Connection conn = database.getConnection();
+        PreparedStatement stmt = conn.prepareStatement("DELETE FROM User WHERE username = ?");
+        stmt.setString(1, username);
+        stmt.executeUpdate();
+        stmt.close();
+        conn.close();
+
     }
 
 }

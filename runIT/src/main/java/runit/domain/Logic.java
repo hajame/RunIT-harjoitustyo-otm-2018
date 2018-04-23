@@ -127,5 +127,14 @@ public class Logic {
         }
 
     }
+    public void deleteUser(String username) {
+        UserDao dao = new UserDao(database);
+        try {
+            dao.delete(username);
+        } catch (Exception e) {
+            System.out.println("Failed to delete user.");
+        }
+
+    }
 
 }
