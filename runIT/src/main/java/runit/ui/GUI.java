@@ -1,5 +1,6 @@
 package runit.ui;
 
+import java.sql.Timestamp;
 import java.util.List;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -37,20 +38,20 @@ public class GUI extends Application {
 
     }
 
-    public Node createTodoNode(Exercise exercise) {
+    public Node createExerciseNode(Exercise exercise) {
 
-HBox box = new HBox(10);
+        HBox box = new HBox(10);
         Label label = new Label(exercise.toString());
         label.setMinHeight(28);
         Button button = new Button("delete");
         button.setOnAction(e -> {
-//            logic.deleteExercise(exercise);     # not done
+            logic.deleteExercise(exercise);
             redrawExerciseList();
         });
 
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
-        box.setPadding(new Insets(0, 5, 0, 5));
+        box.setPadding(new Insets(1, 1, 1, 0));
 
         box.getChildren().addAll(label, spacer, button);
         return box;
@@ -58,11 +59,14 @@ HBox box = new HBox(10);
 
     public void redrawExerciseList() {
 
+        if (logic.getUser() == null) {
+            return;
+        }
         exerciseNodes.getChildren().clear();
 
         List<Exercise> exercises = logic.getHistory();
         exercises.forEach(oneExercise -> {
-            exerciseNodes.getChildren().add(createTodoNode(oneExercise));
+            exerciseNodes.getChildren().add(createExerciseNode(oneExercise));
         });
     }
 
@@ -71,12 +75,12 @@ HBox box = new HBox(10);
         // login scene
 
         VBox loginPane = new VBox(10);
-        HBox inputPane = new HBox(10);
+        VBox inputPane = new VBox(10);
         loginPane.setPadding(new Insets(10));
         Label userLabel = new Label("username");
-        TextField userInput = new TextField();
+        TextField userInput = new TextField("test");
         Label passLabel = new Label("password");
-        TextField passInput = new TextField();
+        TextField passInput = new TextField("pass");
 
         inputPane.getChildren().addAll(userLabel, userInput, passLabel, passInput);
         Label loginMessage = new Label();
@@ -92,6 +96,7 @@ HBox box = new HBox(10);
                 redrawExerciseList();
                 primaryStage.setScene(runitScene);
                 userInput.setText("");
+                passInput.setText("");
             } else {
                 loginMessage.setText("User does not exist");
                 loginMessage.setTextFill(Color.RED);
@@ -105,7 +110,7 @@ HBox box = new HBox(10);
 
         loginPane.getChildren().addAll(loginMessage, inputPane, loginButton, createButton);
 
-        loginScene = new Scene(loginPane, 300, 250);
+        loginScene = new Scene(loginPane, 480, 250);
 
         // new createNewUserScene
         VBox newUserPane = new VBox(10);
@@ -152,12 +157,12 @@ HBox box = new HBox(10);
 
         newUserPane.getChildren().addAll(userCreationMessage, newUsernamePane, newPassPane, createNewUserButton);
 
-        newUserScene = new Scene(newUserPane, 300, 250);
+        newUserScene = new Scene(newUserPane, 480, 250);
 
         // main scene
         ScrollPane exerciseScrollbar = new ScrollPane();
         BorderPane mainPane = new BorderPane(exerciseScrollbar);
-        runitScene = new Scene(mainPane, 300, 250);
+        runitScene = new Scene(mainPane, 880, 450);
 
         HBox menuPane = new HBox(10);
         Region menuSpacer = new Region();
@@ -169,40 +174,65 @@ HBox box = new HBox(10);
             primaryStage.setScene(loginScene);
         });
 
-        HBox createForm = new HBox(10);
-        Button createTodo = new Button("add");
+        HBox createForm = new HBox(30);
+        Button createExercise = new Button("add");
+        createExercise.setMinWidth(60);
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
-        TextField timeInput = new TextField();
-        createForm.getChildren().addAll(timeInput, spacer, createTodo);
+        Label dateLabel = new Label("date");
+        dateLabel.setMinWidth(30);
+        TextField date = new TextField("2018-12-31");
+        date.setMaxWidth(100);
+        Label timeLabel = new Label("time");
+        timeLabel.setMinWidth(30);
+        TextField time = new TextField("10:00");
+        time.setMaxWidth(60);
+        Label durationLabel = new Label("duration");
+        durationLabel.setMinWidth(55);
+        TextField duration = new TextField("01:00:00");
+        duration.setMaxWidth(100);
+        Label distanceLabel = new Label("distance");
+        distanceLabel.setMinWidth(60);
+        TextField distance = new TextField("10.00");
+        distance.setMaxWidth(60);
+        createForm.getChildren().addAll(dateLabel, date, timeLabel, time, durationLabel, duration, distanceLabel, distance, spacer, createExercise);
 
         exerciseNodes = new VBox(10);
-        exerciseNodes.setMaxWidth(280);
-        exerciseNodes.setMinWidth(280);
+        exerciseNodes.setMaxWidth(820);
+        exerciseNodes.setMinWidth(820);
         redrawExerciseList();
 
         exerciseScrollbar.setContent(exerciseNodes);
         mainPane.setBottom(createForm);
         mainPane.setTop(menuPane);
 
-        createTodo.setOnAction(e -> {
-            todoService.createTodo(timeInput.getText());
-            timeInput.setText("");
+        createExercise.setOnAction(e -> {
+            Timestamp timestamp = logic.createTimestamp(date.getText() + " " + time.getText());
+            int seconds = logic.createDuration(duration.getText());
+            logic.addExercise(new Exercise(timestamp, seconds, Double.parseDouble(distance.getText())));
+            date.setText("");
+            time.setText("");
+            duration.setText("");
+            distance.setText("");
             redrawExerciseList();
         });
 
         // seutp primary stage
-        primaryStage.setTitle("Todos");
+        primaryStage.setTitle("Exercises");
         primaryStage.setScene(loginScene);
         primaryStage.show();
         primaryStage.setOnCloseRequest(e -> {
             System.out.println("closing");
-            System.out.println(todoService.getLoggedUser());
-            if (todoService.getLoggedUser() != null) {
+            System.out.println(logic.getUser());
+            if (logic.getUser() != null) {
                 e.consume();
             }
 
         });
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 
 }

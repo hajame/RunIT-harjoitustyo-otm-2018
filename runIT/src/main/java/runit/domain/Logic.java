@@ -6,6 +6,7 @@
 package runit.domain;
 
 import java.io.File;
+import java.sql.Timestamp;
 import java.util.List;
 import runit.dao.ExerciseDao;
 import runit.dao.UserDao;
@@ -58,7 +59,7 @@ public class Logic {
             return "Error: " + e.toString();
         }
     }
-    
+
     public void logout() {
         this.user = null;
     }
@@ -80,6 +81,27 @@ public class Logic {
         return user;
     }
 
+    public Timestamp createTimestamp(String string) {
+        Timestamp timestamp = Timestamp.valueOf(string + ":00.0");
+        return timestamp;
+    }
+
+    public Integer createDuration(String time) {
+        int hours;
+        int minutes;
+        int seconds;
+
+        try {
+            hours = Integer.parseInt(time.substring(0, 2));
+            minutes = Integer.parseInt(time.substring(3, 5));
+            seconds = Integer.parseInt(time.substring(6));
+        } catch (Exception e) {
+            System.out.println("Wrong duration format");
+            return -1;
+        }
+        return hours * 60 * 60 + minutes * 60 + seconds;
+    }
+
     public Exercise addExercise(Exercise exercise) {
         exercise.setUser(user);
         user.addExercise(exercise);
@@ -87,11 +109,21 @@ public class Logic {
         ExerciseDao dao = new ExerciseDao(database);
         try {
             Exercise a = dao.save(exercise);
-            System.out.println("Onnistui");
             return a;
         } catch (Exception e) {
-            System.out.println("Ei onnistunut.");
+            System.out.println("Failed to add exercise.");
             return null;
+        }
+
+    }
+
+    public void deleteExercise(Exercise exercise) {
+        ExerciseDao dao = new ExerciseDao(database);
+        try {
+            dao.delete(exercise);
+            user.setHistory(dao.findAllByUser(user));
+        } catch (Exception e) {
+            System.out.println("Failed to delete exercise.");
         }
 
     }
