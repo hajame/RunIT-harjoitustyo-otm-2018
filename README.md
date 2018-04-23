@@ -15,7 +15,7 @@ Harjoitustyö kurssille Ohjelmistotekniikan menetelmät.
 Ohjelman voi suorittaa NetBeansin vihreällä napilla, tai terminaalissa kansiossa _runIT_:
 
 ```
-mvn compile exec:java -Dexec.mainClass=runit.domain.Main
+mvn compile exec:java -Dexec.mainClass=runit.ui.GUI
 ```
 Käynnissä olevan Dao-mallin toteutuksen vuoksi ohjelmaan ei voi vielä luoda uusia käyttäjiä tai harjoituksia. Voit kirjautua testikäyttäjänä tunnuksella _test_ ja salasanalla _pass_. Lisäksi voit tulostaa listan harjoituksista.
 
