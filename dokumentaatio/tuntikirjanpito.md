@@ -12,6 +12,7 @@
 | 16.4. | 8 | Dao-implementaatio. Testikattavuuden nostaminen. Luokka/pakkauskaavio. Checkstyle ja tyylin korjaus. |
 | 18.4. | 4 | Käyttäjän ja Harjoituksen lisääminen. |
 | 20.4. | 3 | Tietokannan luonti suorituksen yhteydessä. Ensimmäisen jar-tiedoston luonti. Käyttöliittymän muokkausta. Checkstyle.|
-| 22.4 | 2  | GUI:n aloitus |
-| 23.4 | 4  | GUI toimintakuntoinen. Exercisen poistaminen. Integraatiotestien luominen.|   
-| yht   | 35    |    | 
+| 22.4. | 2  | GUI:n aloitus |
+| 23.4. | 4  | GUI toimintakuntoinen. Exercisen poistaminen. Integraatiotestien luominen.|   
+| 24.4. | 2 | Käyttäjän kirjautumisen sekvenssikaavio ja arkkitehtuuri.md päivitys |
+| yht   | 37    |    | 
