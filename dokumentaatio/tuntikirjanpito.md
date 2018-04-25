@@ -16,4 +16,4 @@
 | 23.4. | 4  | GUI toimintakuntoinen. Exercisen poistaminen. Integraatiotestien luominen.|   
 | 24.4. | 2 | Käyttäjän kirjautumisen sekvenssikaavio ja arkkitehtuuri.md päivitys |
 | 25.4. | 3 | JavaDoc aloitettu, 3 luokkaa dokumentoitu. |
-| yht   | 37    |    | 
+| yht   | 40    |    | 
