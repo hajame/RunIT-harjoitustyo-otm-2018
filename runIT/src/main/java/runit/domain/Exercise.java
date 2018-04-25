@@ -8,6 +8,9 @@ package runit.domain;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
 
+/**
+ * Class describing a single running exercise.
+ */
 public class Exercise {
 
     private User user;
@@ -17,6 +20,13 @@ public class Exercise {
     private double avgSpeed;
     private double distance;
 
+    /**
+     * Creates a new Exercise.
+     *
+     * @param time beginning time of the exercise
+     * @param duration duration of exercise in seconds
+     * @param distance distance of exercise in kilometers
+     */
     public Exercise(Timestamp time, int duration, double distance) {
         this.user = null;
         this.id = null;
@@ -42,6 +52,9 @@ public class Exercise {
         this.user = user;
     }
 
+    /**
+     * @return duration in hours
+     */
     public double durationAsHours() {
 
         return 1.0 * ((double) this.duration / 60 / 60);
@@ -59,6 +72,9 @@ public class Exercise {
         return duration;
     }
 
+    /**
+     * @param seconds duration in seconds
+     */
     public void setDuration(int seconds) {
         this.duration = seconds;
     }
@@ -67,6 +83,9 @@ public class Exercise {
         return avgSpeed;
     }
 
+    /**
+     * @param avgSpeed average speed in seconds
+     */
     public void setAvgSpeed(double avgSpeed) {
         this.avgSpeed = avgSpeed;
     }
@@ -78,11 +97,17 @@ public class Exercise {
     public void setDistance(double distance) {
         this.distance = distance;
     }
-
+    
+    /**
+     * @return time in String format
+     */
     public String time() {
         return time.toString().substring(0, 16);
     }
-
+    
+    /**
+     * @return duration in HH:MM:SS format
+     */
     public String durationToString() {
         int hours = duration / 3600;
         int minutes = (duration % 3600) / 60;
@@ -91,6 +116,9 @@ public class Exercise {
         return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
 
+    /**
+     * @return Exercise in String format
+     */        
     @Override
     public String toString() {
 

@@ -127,6 +127,7 @@ public class Logic {
         }
 
     }
+
     public void deleteUser(String username) {
         UserDao dao = new UserDao(database);
         try {
