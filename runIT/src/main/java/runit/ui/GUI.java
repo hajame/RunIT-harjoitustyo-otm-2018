@@ -3,6 +3,8 @@ package runit.ui;
 import java.sql.Timestamp;
 import java.util.List;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -17,14 +19,14 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import runit.domain.Exercise;
-import runit.domain.Logic;
+import runit.domain.*;
 
 public class GUI extends Application {
 
     private Logic logic;
 
     private Scene runitScene;
+    private Scene summaryScene;
     private Scene newUserScene;
     private Scene loginScene;
 
@@ -105,6 +107,7 @@ public class GUI extends Application {
 
         createButton.setOnAction(e -> {
             userInput.setText("");
+            passInput.setText("");
             primaryStage.setScene(newUserScene);
         });
 
@@ -156,10 +159,36 @@ public class GUI extends Application {
         });
 
         newUserPane.getChildren().addAll(userCreationMessage, newUsernamePane, newPassPane, createNewUserButton);
-
         newUserScene = new Scene(newUserPane, 480, 250);
 
-        // main scene
+        // summary scene
+        VBox infoPane = new VBox();
+        BorderPane summaryPane = new BorderPane(infoPane);
+        summaryScene = new Scene(summaryPane, 880, 450);
+        Region summaryMenuSpacer = new Region();
+        HBox.setHgrow(summaryMenuSpacer, Priority.ALWAYS);
+        HBox summaryMenu = new HBox(10);
+        Label summaryLabel = new Label("Summary");
+        Button summaryLogoutButton = new Button("logout");
+        Button exercisesView = new Button("exercises");
+        Label totalExercises = new Label("Total exercises: \t" + logic.getStatistics().getTotalExercises());
+        totalExercises.setMinWidth(30);
+        Label avgDistance = new Label("Average distance: \t" + logic.getStatistics().getAvgDistance());
+        avgDistance.setMinWidth(30);
+        summaryMenu.getChildren().addAll(summaryLabel, summaryMenuSpacer, exercisesView, summaryLogoutButton);
+
+        exercisesView.setOnAction(e -> {
+            primaryStage.setScene(runitScene);
+        });
+        summaryLogoutButton.setOnAction(e -> {
+            logic.logout();
+            primaryStage.setScene(loginScene);
+        });
+
+        infoPane.getChildren().addAll(totalExercises, avgDistance);
+        summaryPane.setTop(summaryMenu);
+
+        // runitScene (main scene)
         ScrollPane exerciseScrollbar = new ScrollPane();
         BorderPane mainPane = new BorderPane(exerciseScrollbar);
         runitScene = new Scene(mainPane, 880, 450);
@@ -168,11 +197,21 @@ public class GUI extends Application {
         Region menuSpacer = new Region();
         HBox.setHgrow(menuSpacer, Priority.ALWAYS);
         Button logoutButton = new Button("logout");
-        menuPane.getChildren().addAll(menuLabel, menuSpacer, logoutButton);
+        Button summaryButton = new Button("summary");
+
+        summaryButton.setOnAction(e -> {
+            totalExercises.setText("Total exercises: \t" 
+                    + logic.getStatistics().getTotalExercises());
+            avgDistance.setText("Average distance: \t" 
+                    + logic.getStatistics().getAvgDistance());
+            primaryStage.setScene(summaryScene);
+        });
         logoutButton.setOnAction(e -> {
             logic.logout();
             primaryStage.setScene(loginScene);
         });
+
+        menuPane.getChildren().addAll(menuLabel, menuSpacer, summaryButton, logoutButton);
 
         HBox createForm = new HBox(30);
         Button createExercise = new Button("add");
@@ -217,7 +256,7 @@ public class GUI extends Application {
             redrawExerciseList();
         });
 
-        // seutp primary stage
+        // setup primary stage
         primaryStage.setTitle("runIT");
         primaryStage.setScene(loginScene);
         primaryStage.show();
@@ -227,7 +266,6 @@ public class GUI extends Application {
             if (logic.getUser() != null) {
                 e.consume();
             }
-
         });
     }
 

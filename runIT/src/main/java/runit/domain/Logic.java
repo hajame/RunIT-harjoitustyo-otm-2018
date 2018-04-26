@@ -3,8 +3,7 @@ package runit.domain;
 import java.io.File;
 import java.sql.Timestamp;
 import java.util.List;
-import runit.dao.ExerciseDao;
-import runit.dao.UserDao;
+import runit.dao.*;
 import runit.dao.util.Database;
 
 /**
@@ -14,11 +13,13 @@ public class Logic {
 
     private User user;
     private Database database;
+    private Statistics statistics;
 
     /**
      * Constructs a new Logic object. Create a Database object pointing a database.
      */
     public Logic() {
+        this.statistics = new Statistics();
         try {
             File file = new File("database.db");
             database = new Database("jdbc:sqlite:" + file.getAbsolutePath());
@@ -28,8 +29,12 @@ public class Logic {
         }
     }
 
+    public Statistics getStatistics() {
+        return statistics;
+    }
+
     /**
-     * User's exercise history.
+     * Fetches user's exercise history from the database.
      *
      * @return List of Exercises by User.
      */
@@ -40,6 +45,7 @@ public class Logic {
         try {
             List<Exercise> exercises = dao.findAllByUser(user);
             user.setHistory(exercises);
+            statistics.calculate(exercises);
             return exercises;
         } catch (Exception e) {
             return null;
@@ -176,7 +182,7 @@ public class Logic {
     /**
      * Deletes a User from the database.
      *
-     * @param username user's username
+     * @param username
      */
     public void deleteUser(String username) {
         UserDao dao = new UserDao(database);
