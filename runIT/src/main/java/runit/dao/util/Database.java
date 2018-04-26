@@ -15,6 +15,7 @@ public class Database {
      * Constructor creates a Database object.
      *
      * @param databaseAddress path of the database
+     * @throws java.lang.ClassNotFoundException
      */
     public Database(String databaseAddress) throws ClassNotFoundException {
         this.databaseAddress = databaseAddress;
@@ -22,6 +23,7 @@ public class Database {
 
     /**
      * @return connection to database
+     * @throws java.sql.SQLException
      */
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(databaseAddress);

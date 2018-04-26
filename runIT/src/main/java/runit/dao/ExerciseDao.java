@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package runit.dao;
 
 import java.sql.Connection;
@@ -16,6 +12,9 @@ import runit.dao.util.Database;
 import runit.domain.Exercise;
 import runit.domain.User;
 
+/**
+ * DAO (Data Access Object) class for interacting with database's Exercise table.
+ */
 public class ExerciseDao implements Dao<Exercise, Exercise> {
 
     private Database database;
@@ -24,6 +23,13 @@ public class ExerciseDao implements Dao<Exercise, Exercise> {
         this.database = database;
     }
 
+    /**
+     * Finds an exercise from the database and if found returns an Exercise object.
+     * 
+     * @param exercise User id required
+     * @return Exercise or null if not found.
+     * @throws SQLException 
+     */
     @Override
     public Exercise findOne(Exercise exercise) throws SQLException {
         Connection conn = database.getConnection();
@@ -33,22 +39,26 @@ public class ExerciseDao implements Dao<Exercise, Exercise> {
 
         ResultSet rs = stmt.executeQuery();
         if (!rs.next()) {
-            System.out.println("Typerä virhe");
             return null;
         }
 
         Timestamp timestamp = Timestamp.valueOf(rs.getString("time"));
         Exercise found = new Exercise(timestamp, rs.getInt("duration"), rs.getDouble("distance"));
         found.setId(rs.getInt("id"));
-
+        
         stmt.close();
-
         rs.close();
-
         conn.close();
         return found;
     }
 
+    /**
+     * Retrieves the user's exercise history.
+     * 
+     * @param user User object complete with id
+     * @return List of exercise objects.
+     * @throws SQLException 
+     */
     public List<Exercise> findAllByUser(User user) throws SQLException {
 
         List<Exercise> exercises = new ArrayList<>();
@@ -65,27 +75,25 @@ public class ExerciseDao implements Dao<Exercise, Exercise> {
                 a.setUser(user);
                 a.setId(result.getInt("id"));
                 exercises.add(a);
-
             }
         }
-
         return exercises;
-
     }
 
+    /**
+     * Saves or updates an Exercise row in the database. 
+     */
     @Override
     public Exercise saveOrUpdate(Exercise exercise) throws SQLException {
-
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-
-//        if (findOne(user.getUsername()) == null) {
-//            User a = save(user);
-//            return a;
-//        }
-//
-//        return update(user);
     }
 
+    /**
+     * Saves an Exercise in the database.
+     * @param exercise must contain user complete with id
+     * @return Exercise object complete with an exercise id.
+     * @throws SQLException 
+     */
     public Exercise save(Exercise exercise) throws SQLException {
         Connection conn = database.getConnection();
         PreparedStatement stmt = conn.prepareStatement("INSERT INTO Exercise (user_id, time, duration, distance) values (?, ?, ?, ?)");
@@ -101,23 +109,22 @@ public class ExerciseDao implements Dao<Exercise, Exercise> {
 
         return newExercise;
     }
-
+    
+    /**
+     * Updates an Exercise in the database.
+     * @param exercise
+     * @return
+     * @throws SQLException 
+     */
     public Exercise update(Exercise exercise) throws SQLException {
-
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-
-//        Connection conn = database.getConnection();
-//        PreparedStatement stmt = conn.prepareStatement("UPDATE USER SET password = ? WHERE username = ?");
-//        stmt.setString(1, user.getPassword());
-//        stmt.setString(2, user.getUsername());
-//        stmt.executeUpdate();
-//        stmt.close();
-//        conn.close();
-//
-//        User updatedUser = findOne(user.getUsername());
-//        return updatedUser;
     }
 
+    /**
+     * Deletes an exercise from the database and user history.
+     * @param exercise must contain user with id
+     * @throws SQLException 
+     */
     @Override
     public void delete(Exercise exercise) throws SQLException {
         Connection conn = database.getConnection();
@@ -128,6 +135,10 @@ public class ExerciseDao implements Dao<Exercise, Exercise> {
         conn.close();
     }
 
+    /**
+     * @return List of all exercises found in the database.
+     * @throws SQLException 
+     */
     @Override
     public List<Exercise> findAll() throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package runit.domain;
 
 import java.io.File;
@@ -12,11 +7,17 @@ import runit.dao.ExerciseDao;
 import runit.dao.UserDao;
 import runit.dao.util.Database;
 
+/**
+ * Class responsible for application logic.
+ */
 public class Logic {
 
     private User user;
     private Database database;
 
+    /**
+     * Constructs a new Logic object. Create a Database object pointing a database.
+     */
     public Logic() {
         try {
             File file = new File("database.db");
@@ -27,6 +28,11 @@ public class Logic {
         }
     }
 
+    /**
+     * User's exercise history.
+     *
+     * @return List of Exercises by User.
+     */
     public List<Exercise> getHistory() {
 
         ExerciseDao dao = new ExerciseDao(database);
@@ -40,16 +46,23 @@ public class Logic {
         }
     }
 
-    public String loginUser(String name, String pass) {
-
+    /**
+     * Searches for a user from the database. If found, creates a new User
+     * object and sets it as a private attribute.
+     *
+     * @param username Unique username
+     * @param password Password of the user
+     * @return String "Login successful", "Wrong password", "User not found" or
+     * "Error: *message*"
+     */
+    public String loginUser(String username, String password) {
         UserDao dao = new UserDao(database);
-
         try {
-            User user = dao.findOne(name);
+            User user = dao.findOne(username);
             if (user == null) {
                 return "User not found";
             }
-            if (user.getPassword().equals(pass)) {
+            if (user.getPassword().equals(password)) {
                 this.user = user;
                 return "Login successful";
             } else {
@@ -60,16 +73,26 @@ public class Logic {
         }
     }
 
+    /**
+     * Logs the user out. Clears the user object.
+     */
     public void logout() {
         this.user = null;
     }
 
-    public String signupUser(String name, String pass) {
+    /**
+     * Creates a new user and inserts it to the database.
+     *
+     * @param username Unique username
+     * @param password Password of the user
+     * @return "Login successful" or "Error: + msg"
+     */
+    public String signupUser(String username, String password) {
 
         UserDao dao = new UserDao(database);
 
         try {
-            User user = dao.saveOrUpdate(new User(name, pass));
+            User user = dao.saveOrUpdate(new User(username, password));
             this.user = user;
             return "Login successful";
         } catch (Exception e) {
@@ -81,20 +104,32 @@ public class Logic {
         return user;
     }
 
+    /**
+     * Creates a Timestamp object from a String.
+     *
+     * @param string in format "YYYY-MM-DD HH:MM"
+     * @return Timestamp object
+     */
     public Timestamp createTimestamp(String string) {
         Timestamp timestamp = Timestamp.valueOf(string + ":00.0");
         return timestamp;
     }
 
-    public Integer createDuration(String time) {
+    /**
+     * Creates a duration in seconds.
+     *
+     * @param duration String in format "HH:MM:SS"
+     * @return duration as seconds
+     */
+    public Integer createDuration(String duration) {
         int hours;
         int minutes;
         int seconds;
 
         try {
-            hours = Integer.parseInt(time.substring(0, 2));
-            minutes = Integer.parseInt(time.substring(3, 5));
-            seconds = Integer.parseInt(time.substring(6));
+            hours = Integer.parseInt(duration.substring(0, 2));
+            minutes = Integer.parseInt(duration.substring(3, 5));
+            seconds = Integer.parseInt(duration.substring(6));
         } catch (Exception e) {
             System.out.println("Wrong duration format");
             return -1;
@@ -102,6 +137,12 @@ public class Logic {
         return hours * 60 * 60 + minutes * 60 + seconds;
     }
 
+    /**
+     * Inserts an Exercise to the database and User's history.
+     *
+     * @param exercise Exercise object (no id or User attributes needed)
+     * @return Exercise object with User and id attributes.
+     */
     public Exercise addExercise(Exercise exercise) {
         exercise.setUser(user);
         user.addExercise(exercise);
@@ -114,9 +155,13 @@ public class Logic {
             System.out.println("Failed to add exercise.");
             return null;
         }
-
     }
 
+    /**
+     * Deletes an Exercise from the database and the User's history.
+     *
+     * @param exercise complete Exercise object.
+     */
     public void deleteExercise(Exercise exercise) {
         ExerciseDao dao = new ExerciseDao(database);
         try {
@@ -128,6 +173,11 @@ public class Logic {
 
     }
 
+    /**
+     * Deletes a User from the database.
+     *
+     * @param username user's username
+     */
     public void deleteUser(String username) {
         UserDao dao = new UserDao(database);
         try {
@@ -135,7 +185,5 @@ public class Logic {
         } catch (Exception e) {
             System.out.println("Failed to delete user.");
         }
-
     }
-
 }
