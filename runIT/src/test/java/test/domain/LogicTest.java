@@ -43,27 +43,24 @@ public class LogicTest {
 
         Timestamp timestamp = Timestamp.valueOf("2018-01-31 10:10:00.0");
 
-        exercise = new Exercise(timestamp, 3600, 1.0*10);
+        exercise = new Exercise(timestamp, 3600, 10.0);
         user = new User("test", "pass");
-        exercise.setUser(user);
         logic = new Logic();
-//        exercise = logic.addExercise(exercise);
-//        logic.deleteExercise(exercise);
+        logic.signupUser(user.getUsername(), user.getPassword());
+
     }
 
     @After
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
     @Test
     public void loginUserTest() {
         assertEquals(logic.loginUser(user.getUsername(), user.getPassword()), "Login successful");
         assertEquals(logic.loginUser("thisUser", "thisPassword"), "User not found");
         assertEquals(logic.loginUser(user.getUsername(), "wrongPassword"), "Wrong password");
     }
+
     @Test
     public void signupUserTest() {
         assertEquals(logic.signupUser("testUser", "testPass"), "Login successful");
@@ -73,24 +70,36 @@ public class LogicTest {
 
     @Test
     public void addExerciseTest() {
-//        Exercise comp = logic.addExercise(exercise);
-//        
-//        assertEquals(comp.getId(), exercise.getId());
-//        List<Exercise> exercises = logic.getHistory();
-//        boolean found = exercises.contains(exercise);
-//        
-//        assertTrue(logic.getHistory().contains(exercise));
-//        logic.deleteExercise(exercise);
-//        assertFalse(logic.getHistory().contains(exercise));
+        Exercise comp = logic.addExercise(exercise);
+        assertEquals(comp.time(), exercise.time());
+        assertEquals(comp.getDuration(), exercise.getDuration());
+        assertEquals(comp.getUser().toString(), exercise.getUser().toString());
+    }
+
+    @Test
+    public void createTimestampTest() {
+        String comp = "2018-01-31 10:10";        
+        Timestamp timestamp = logic.createTimestamp(comp);
+        assertEquals(timestamp.toString().substring(0, 16), comp);
 
     }
+    
     @Test
-    public void createTimestamp() {
-        Timestamp timestamp = Timestamp.valueOf("2018-01-31 10:10:00.0");
+    public void getHistoryTest() {
+        List<Exercise> comp = logic.getHistory();
+        List<Exercise> history = logic.getUser().getHistory();
         
-        String comp = "2018-01-31 10:10:00";
         
-        assertEquals(exercise.time()+":00", comp);
-
+        String compString = "";
+        String historyString = "";
+        
+        for (Exercise a : comp) {
+            compString += a.toString();
+        }
+        for (Exercise a : logic.getUser().getHistory()) {
+            historyString += a.toString();
+        }
+        
+        assertEquals(compString, historyString);
     }
 }

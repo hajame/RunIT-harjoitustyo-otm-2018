@@ -44,7 +44,7 @@ public class Logic {
 
         try {
             List<Exercise> exercises = dao.findAllByUser(user);
-            user.setHistory(exercises);
+            user.setHistory(exercises);            
             statistics.calculate(exercises);
             return exercises;
         } catch (Exception e) {
@@ -151,11 +151,10 @@ public class Logic {
      */
     public Exercise addExercise(Exercise exercise) {
         exercise.setUser(user);
-        user.addExercise(exercise);
-
         ExerciseDao dao = new ExerciseDao(database);
         try {
             Exercise a = dao.save(exercise);
+            user.addExercise(a);
             return a;
         } catch (Exception e) {
             System.out.println("Failed to add exercise.");

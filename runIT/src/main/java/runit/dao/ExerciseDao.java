@@ -1,4 +1,3 @@
-
 package runit.dao;
 
 import java.sql.Connection;
@@ -13,7 +12,8 @@ import runit.domain.Exercise;
 import runit.domain.User;
 
 /**
- * DAO (Data Access Object) class for interacting with database's Exercise table.
+ * DAO (Data Access Object) class for interacting with database's Exercise
+ * table.
  */
 public class ExerciseDao implements Dao<Exercise, Exercise> {
 
@@ -24,11 +24,12 @@ public class ExerciseDao implements Dao<Exercise, Exercise> {
     }
 
     /**
-     * Finds an exercise from the database and if found returns an Exercise object.
-     * 
+     * Finds an exercise from the database and if found returns an Exercise
+     * object.
+     *
      * @param exercise User id required
      * @return Exercise or null if not found.
-     * @throws SQLException 
+     * @throws SQLException
      */
     @Override
     public Exercise findOne(Exercise exercise) throws SQLException {
@@ -44,8 +45,9 @@ public class ExerciseDao implements Dao<Exercise, Exercise> {
 
         Timestamp timestamp = Timestamp.valueOf(rs.getString("time"));
         Exercise found = new Exercise(timestamp, rs.getInt("duration"), rs.getDouble("distance"));
+        found.setUser(exercise.getUser());
         found.setId(rs.getInt("id"));
-        
+
         stmt.close();
         rs.close();
         conn.close();
@@ -54,10 +56,10 @@ public class ExerciseDao implements Dao<Exercise, Exercise> {
 
     /**
      * Retrieves the user's exercise history.
-     * 
+     *
      * @param user User object complete with id
      * @return List of exercise objects.
-     * @throws SQLException 
+     * @throws SQLException
      */
     public List<Exercise> findAllByUser(User user) throws SQLException {
 
@@ -81,7 +83,7 @@ public class ExerciseDao implements Dao<Exercise, Exercise> {
     }
 
     /**
-     * Saves or updates an Exercise row in the database. 
+     * Saves or updates an Exercise row in the database.
      */
     @Override
     public Exercise saveOrUpdate(Exercise exercise) throws SQLException {
@@ -90,9 +92,10 @@ public class ExerciseDao implements Dao<Exercise, Exercise> {
 
     /**
      * Saves an Exercise in the database.
+     *
      * @param exercise must contain user complete with id
      * @return Exercise object complete with an exercise id.
-     * @throws SQLException 
+     * @throws SQLException
      */
     public Exercise save(Exercise exercise) throws SQLException {
         Connection conn = database.getConnection();
@@ -109,12 +112,13 @@ public class ExerciseDao implements Dao<Exercise, Exercise> {
 
         return newExercise;
     }
-    
+
     /**
      * Updates an Exercise in the database.
+     *
      * @param exercise
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
     public Exercise update(Exercise exercise) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -122,8 +126,9 @@ public class ExerciseDao implements Dao<Exercise, Exercise> {
 
     /**
      * Deletes an exercise from the database and user history.
+     *
      * @param exercise must contain user with id
-     * @throws SQLException 
+     * @throws SQLException
      */
     @Override
     public void delete(Exercise exercise) throws SQLException {
@@ -137,7 +142,7 @@ public class ExerciseDao implements Dao<Exercise, Exercise> {
 
     /**
      * @return List of all exercises found in the database.
-     * @throws SQLException 
+     * @throws SQLException
      */
     @Override
     public List<Exercise> findAll() throws SQLException {

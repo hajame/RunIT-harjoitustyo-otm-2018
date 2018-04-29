@@ -21,7 +21,7 @@ public class User {
      * Creates a new User.
      * 
      * @param username a unique username
-     * @param password a password for loggin in
+     * @param password a password for logging in
      */
     public User(String username, String password) {
         this.id = null;
