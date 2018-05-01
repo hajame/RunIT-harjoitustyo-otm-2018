@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 import java.text.DecimalFormat;
 
 /**
- * Class describing a single running exercise.
+ * Class describing a single running/walking exercise.
  */
 public class Exercise {
 

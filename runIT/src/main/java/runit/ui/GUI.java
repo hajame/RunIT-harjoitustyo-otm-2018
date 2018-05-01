@@ -3,8 +3,6 @@ package runit.ui;
 import java.sql.Timestamp;
 import java.util.List;
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -171,9 +169,13 @@ public class GUI extends Application {
         Label summaryLabel = new Label("Summary");
         Button summaryLogoutButton = new Button("logout");
         Button exercisesView = new Button("exercises");
-        Label totalExercises = new Label("Total exercises: \t" + logic.getStatistics().getTotalExercises());
+        Label totalExercises = new Label("Total exercises: \t" + 0);
         totalExercises.setMinWidth(30);
-        Label avgDistance = new Label("Average distance: \t" + logic.getStatistics().getAvgDistance());
+        Label avgSpeed = new Label("Average speed: \t" + 0);
+        avgSpeed.setMinWidth(30);
+        Label avgDuration = new Label("Average duration: \t" + 0);
+        avgDuration.setMinWidth(30);
+        Label avgDistance = new Label("Average distance: \t" + 0);
         avgDistance.setMinWidth(30);
         summaryMenu.getChildren().addAll(summaryLabel, summaryMenuSpacer, exercisesView, summaryLogoutButton);
 
@@ -185,7 +187,7 @@ public class GUI extends Application {
             primaryStage.setScene(loginScene);
         });
 
-        infoPane.getChildren().addAll(totalExercises, avgDistance);
+        infoPane.getChildren().addAll(totalExercises, avgSpeed, avgDuration, avgDistance);
         summaryPane.setTop(summaryMenu);
 
         // runitScene (main scene)
@@ -202,8 +204,12 @@ public class GUI extends Application {
         summaryButton.setOnAction(e -> {
             totalExercises.setText("Total exercises: \t" 
                     + logic.getStatistics().getTotalExercises());
+            avgSpeed.setText("Average speed: \t" + 
+                    logic.getStatistics().getAvgExercise().getAvgSpeed());
+            avgDuration.setText("Average duration: \t" + 
+                    logic.getStatistics().getAvgExercise().durationToString());
             avgDistance.setText("Average distance: \t" 
-                    + logic.getStatistics().getAvgDistance());
+                    + logic.getStatistics().getAvgExercise().getDistance());
             primaryStage.setScene(summaryScene);
         });
         logoutButton.setOnAction(e -> {
