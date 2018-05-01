@@ -117,7 +117,7 @@ public class ExerciseDao implements Dao<Exercise, Exercise> {
      * Updates an Exercise in the database.
      *
      * @param exercise
-     * @return
+     * @return updated exercise
      * @throws SQLException
      */
     public Exercise update(Exercise exercise) throws SQLException {
