@@ -17,7 +17,7 @@
 | 24.4. | 2 | Käyttäjän kirjautumisen sekvenssikaavio ja arkkitehtuuri.md päivitys |
 | 25.4. | 3 | JavaDoc aloitettu, 3 luokkaa dokumentoitu. |
 | 26.4. | 6 | Nyt yhteensä 5 luokkaa dokumentoitu. Summary-näkymä, johon ulkoinen kirjasto Apache Commons Math 3.6.1 laskee harjoitusten keskiarvoisen pituuden. Lisäksi näkymässä on harjoitusten yhteismäärä. |
-| 29.4. | 2 | Integraatiotestejä ExtoerciseDaon kanssa. Testikattavuus 80%. |
+| 29.4. | 2 | Integraatiotestejä ExerciseDaon kanssa. Testikattavuus ~80%. |
 | 1.5. | 4 | Lisää Statistics-luokan toiminnallisuutta. Summary-sivu vaatimusmäärittelyn mukainen. Alustavan arkkitehtuurikuvauksen työstämistä. |
 | 2.5. | 5 | Logiikka luokalle DAOjen injektio luokan ulkopuolelta. Käyttöohje laadittu. Alusta arkkitehtuurikuvaus on sovelluslogiikan, käyttöliittymän ja sovelluslogiikan osalta valmis. Uusi release: viikko6.
 | yht   | 60    |    | 
