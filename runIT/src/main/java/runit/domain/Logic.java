@@ -1,37 +1,24 @@
 package runit.domain;
 
-import java.io.File;
 import java.sql.Timestamp;
 import java.util.List;
 import runit.dao.*;
-import runit.dao.util.Database;
 
 /**
- * Class responsible for application logic.
+ * Class responsible for application logic. Accesses user and exercise data via 
+ * DAO-classes. Stores statistical data in Statistics object.
  */
 public class Logic {
 
     private User user;
-    private Database database;
     private Statistics statistics;
     private UserDao userDao;
     private ExerciseDao exerciseDao;
 
-    /**
-     * Constructs a new Logic object. Create a Database object pointing a
-     * database.
-     */
-    public Logic() {
+    public Logic(UserDao userDao, ExerciseDao exerciseDao) {
         this.statistics = new Statistics();
-        try {
-            File file = new File("database.db");
-            database = new Database("jdbc:sqlite:" + file.getAbsolutePath());
-            database.init();
-        } catch (Exception e) {
-            System.out.println("Incorrect database address. --- " + e);
-        }
-        this.userDao = new UserDao(database);
-        this.exerciseDao = new ExerciseDao(database);
+        this.userDao = userDao;
+        this.exerciseDao = exerciseDao;
     }
 
     public Statistics getStatistics() {

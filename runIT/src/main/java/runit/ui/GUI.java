@@ -1,5 +1,6 @@
 package runit.ui;
 
+import java.io.File;
 import java.sql.Timestamp;
 import java.util.List;
 import javafx.application.Application;
@@ -17,6 +18,9 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import runit.dao.ExerciseDao;
+import runit.dao.UserDao;
+import runit.dao.util.Database;
 import runit.domain.*;
 
 public class GUI extends Application {
@@ -33,7 +37,21 @@ public class GUI extends Application {
 
     @Override
     public void init() throws Exception {
-        this.logic = new Logic();
+
+        Database database = null;
+
+        try {
+            File file = new File("database.db");
+            database = new Database("jdbc:sqlite:" + file.getAbsolutePath());
+            database.init();
+
+        } catch (Exception e) {
+            System.out.println("Incorrect database address. --- " + e);
+        }
+        UserDao userDao = new UserDao(database);
+        ExerciseDao exerciseDao = new ExerciseDao(database);
+        this.logic = new Logic(userDao, exerciseDao);
+
     }
 
     public Node createExerciseNode(Exercise exercise) {
@@ -200,13 +218,13 @@ public class GUI extends Application {
         Button summaryButton = new Button("summary");
 
         summaryButton.setOnAction(e -> {
-            totalExercises.setText("Total exercises: \t" 
+            totalExercises.setText("Total exercises: \t"
                     + logic.getStatistics().getTotalExercises());
-            avgSpeed.setText("Average speed: \t" + 
-                    logic.getStatistics().getAvgExercise().getAvgSpeed());
-            avgDuration.setText("Average duration: \t" + 
-                    logic.getStatistics().getAvgExercise().durationToString());
-            avgDistance.setText("Average distance: \t" 
+            avgSpeed.setText("Average speed: \t"
+                    + logic.getStatistics().getAvgExercise().getAvgSpeed());
+            avgDuration.setText("Average duration: \t"
+                    + logic.getStatistics().getAvgExercise().durationToString());
+            avgDistance.setText("Average distance: \t"
                     + logic.getStatistics().getAvgExercise().getDistance());
             primaryStage.setScene(summaryScene);
         });
