@@ -14,9 +14,12 @@ public class Logic {
     private User user;
     private Database database;
     private Statistics statistics;
+    private UserDao userDao;
+    private ExerciseDao exerciseDao;
 
     /**
-     * Constructs a new Logic object. Create a Database object pointing a database.
+     * Constructs a new Logic object. Create a Database object pointing a
+     * database.
      */
     public Logic() {
         this.statistics = new Statistics();
@@ -27,6 +30,8 @@ public class Logic {
         } catch (Exception e) {
             System.out.println("Incorrect database address. --- " + e);
         }
+        this.userDao = new UserDao(database);
+        this.exerciseDao = new ExerciseDao(database);
     }
 
     public Statistics getStatistics() {
@@ -39,12 +44,9 @@ public class Logic {
      * @return List of Exercises by User.
      */
     public List<Exercise> getHistory() {
-
-        ExerciseDao dao = new ExerciseDao(database);
-
         try {
-            List<Exercise> exercises = dao.findAllByUser(user);
-            user.setHistory(exercises);            
+            List<Exercise> exercises = exerciseDao.findAllByUser(user);
+            user.setHistory(exercises);
             statistics.calculate(exercises);
             return exercises;
         } catch (Exception e) {
@@ -62,9 +64,8 @@ public class Logic {
      * "Error: *message*"
      */
     public String loginUser(String username, String password) {
-        UserDao dao = new UserDao(database);
         try {
-            User user = dao.findOne(username);
+            User user = userDao.findOne(username);
             if (user == null) {
                 return "User not found";
             }
@@ -95,10 +96,8 @@ public class Logic {
      */
     public String signupUser(String username, String password) {
 
-        UserDao dao = new UserDao(database);
-
         try {
-            User user = dao.saveOrUpdate(new User(username, password));
+            User user = userDao.saveOrUpdate(new User(username, password));
             this.user = user;
             return "Login successful";
         } catch (Exception e) {
@@ -151,9 +150,8 @@ public class Logic {
      */
     public Exercise addExercise(Exercise exercise) {
         exercise.setUser(user);
-        ExerciseDao dao = new ExerciseDao(database);
         try {
-            Exercise a = dao.save(exercise);
+            Exercise a = exerciseDao.save(exercise);
             user.addExercise(a);
             return a;
         } catch (Exception e) {
@@ -168,14 +166,12 @@ public class Logic {
      * @param exercise complete Exercise object.
      */
     public void deleteExercise(Exercise exercise) {
-        ExerciseDao dao = new ExerciseDao(database);
         try {
-            dao.delete(exercise);
-            user.setHistory(dao.findAllByUser(user));
+            exerciseDao.delete(exercise);
+            user.setHistory(exerciseDao.findAllByUser(user));
         } catch (Exception e) {
             System.out.println("Failed to delete exercise.");
         }
-
     }
 
     /**
@@ -184,9 +180,8 @@ public class Logic {
      * @param username
      */
     public void deleteUser(String username) {
-        UserDao dao = new UserDao(database);
         try {
-            dao.delete(username);
+            userDao.delete(username);
         } catch (Exception e) {
             System.out.println("Failed to delete user.");
         }

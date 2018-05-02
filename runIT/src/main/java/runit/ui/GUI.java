@@ -33,9 +33,7 @@ public class GUI extends Application {
 
     @Override
     public void init() throws Exception {
-
         this.logic = new Logic();
-
     }
 
     public Node createExerciseNode(Exercise exercise) {
