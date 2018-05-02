@@ -64,7 +64,7 @@ generoi hakemistoon target suoritettavan jar-tiedoston runIT-1.0-SNAPSHOT.jar
 Tiedostoon [checkstyle.xml](https://github.com/hajame/otm-harjoitustyo/blob/master/runIT/checkstyle.xml) määritellyt tarkistukset suoritetaan komennolla
 
 ```
-mvn checkstyle:checkstyle
+mvn jxr:jxr checkstyle:checkstyle
 ```
 
 Mahdolliset virheilmoitukset selviävät avaamalla selaimella tiedosto _target/site/checkstyle.html_
