@@ -4,6 +4,15 @@ Lataa tiedosto [runIT-1.0-SNAPSHOT.jar](https://github.com/hajame/otm-harjoitust
 
 Sovellus olettaa, että käyttäjä on asentanut Java v1.8:n ja SQLite 3:n.
 
+## Konfigurointi
+
+Sovellus olettaa, että sen käynnistyshakemistossa on konfiguraatiotiedosto _config.properties_, joka määrittelee harjoitustietokannan nimen. Mikäli tiedostoa ei löydy, ohjelma luo oletuksena _config.properties_-tiedoston, jossa tietokannan nimi on _database.db_. Tiedoston sisällön tulee olla alla olevassa muodossa. 
+
+```
+databaseFile=database.db
+```
+Voit halutessasi korvata tietokannan nimen _database.db_ haluamallasi nimellä. Tällöin ohjelma luo uuden tietokannan konfiguroidulla nimellä.
+
 ## Ohjelman käynnistäminen
 
 Ohjelma käynnistetään työpöydän pikakuvakkeesta, tai komentorivillä komennolla
