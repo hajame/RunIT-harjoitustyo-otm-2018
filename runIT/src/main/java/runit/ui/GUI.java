@@ -1,8 +1,15 @@
 package runit.ui;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -38,10 +45,21 @@ public class GUI extends Application {
     @Override
     public void init() throws Exception {
 
-        Database database = null;
+        Properties properties = new Properties();
+        File config = new File("config.properties");
+        
+        if (!config.exists()) {
+            config.createNewFile();
+            Path path = Paths.get("config.properties");
+            Files.write(path, Arrays.asList("databaseFile=database.db"), Charset.forName("UTF-8"));
+        }
+        
+        properties.load(new FileInputStream("config.properties"));
+        String databaseFileName = properties.getProperty("databaseFile");
 
+        Database database = null;
         try {
-            File file = new File("database.db");
+            File file = new File(databaseFileName);
             database = new Database("jdbc:sqlite:" + file.getAbsolutePath());
             database.init();
 
@@ -95,8 +113,10 @@ public class GUI extends Application {
         loginPane.setPadding(new Insets(10));
         Label userLabel = new Label("username");
         TextField userInput = new TextField("test");
+        userInput.setPromptText("test");
         Label passLabel = new Label("password");
         TextField passInput = new TextField("pass");
+        passInput.setPromptText("pass");
 
         inputPane.getChildren().addAll(userLabel, userInput, passLabel, passInput);
         Label loginMessage = new Label();
@@ -243,18 +263,22 @@ public class GUI extends Application {
         Label dateLabel = new Label("date");
         dateLabel.setMinWidth(30);
         TextField date = new TextField("2018-12-31");
+        date.setPromptText("2018-12-31");
         date.setMaxWidth(100);
         Label timeLabel = new Label("time");
         timeLabel.setMinWidth(30);
         TextField time = new TextField("10:00");
+        time.setPromptText("10:00");
         time.setMaxWidth(60);
         Label durationLabel = new Label("duration");
         durationLabel.setMinWidth(55);
         TextField duration = new TextField("01:00:00");
+        duration.setPromptText("01:00:00");
         duration.setMaxWidth(100);
         Label distanceLabel = new Label("distance");
         distanceLabel.setMinWidth(60);
         TextField distance = new TextField("10.00");
+        distance.setPromptText("10.00");
         distance.setMaxWidth(60);
         createForm.getChildren().addAll(dateLabel, date, timeLabel, time, durationLabel, duration, distanceLabel, distance, spacer, createExercise);
 

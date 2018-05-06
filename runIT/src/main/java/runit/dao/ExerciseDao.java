@@ -87,7 +87,7 @@ public class ExerciseDao implements Dao<Exercise, Exercise> {
      */
     @Override
     public Exercise saveOrUpdate(Exercise exercise) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**
@@ -121,7 +121,7 @@ public class ExerciseDao implements Dao<Exercise, Exercise> {
      * @throws SQLException
      */
     public Exercise update(Exercise exercise) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**
