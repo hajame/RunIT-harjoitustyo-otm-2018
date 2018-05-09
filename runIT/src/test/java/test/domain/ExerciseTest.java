@@ -27,14 +27,6 @@ public class ExerciseTest {
     public ExerciseTest() {
     }
 
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
     @Before
     public void setUp() {
 
@@ -50,9 +42,6 @@ public class ExerciseTest {
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
     @Test
     public void toStringTest() {
         String string = exercise.toString();
@@ -65,7 +54,6 @@ public class ExerciseTest {
         assertEquals(null, exercise.getId());
         assertEquals(timestamp, exercise.getTime());
         assertEquals(3600, exercise.getDuration());
-
     }
 
     @Test
@@ -73,4 +61,15 @@ public class ExerciseTest {
         User user = new User("user", "password");
         assertEquals(user.toString(), exercise.getUser().toString());
     }
+
+    @Test
+    public void hashCodeTest() {
+
+        Timestamp timestamp = Timestamp.valueOf("2018-01-31 10:10:10.0");
+
+        Exercise comp = new Exercise(timestamp, 3600, 10.00);
+        comp.setUser(user);
+        assertEquals(exercise.hashCode(), comp.hashCode());
+    }
+
 }

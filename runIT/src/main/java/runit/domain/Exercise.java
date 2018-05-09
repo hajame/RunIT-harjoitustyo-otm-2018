@@ -2,6 +2,7 @@ package runit.domain;
 
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
+import java.util.Objects;
 
 /**
  * Class describing a single running/walking exercise.
@@ -116,10 +117,54 @@ public class Exercise {
      */        
     @Override
     public String toString() {
-
         DecimalFormat doubleDecimal = new DecimalFormat("#0.00");
-
         return "id (" + id + ") " + time() + ", duration " + durationToString() + ", avgSpeed " + doubleDecimal.format(avgSpeed) + " km/h, distance " + doubleDecimal.format(this.distance) + " km";
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Exercise other = (Exercise) obj;
+        if (this.duration != other.duration) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.avgSpeed) != Double.doubleToLongBits(other.avgSpeed)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.distance) != Double.doubleToLongBits(other.distance)) {
+            return false;
+        }
+        if (!Objects.equals(this.user, other.user)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.time, other.time)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 79 * hash + user.getUsername().hashCode();
+        hash = 79 * hash + Objects.hashCode(this.id);
+        hash = 79 * hash + Objects.hashCode(this.time);
+        hash = 79 * hash + this.duration;
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.avgSpeed) ^ (Double.doubleToLongBits(this.avgSpeed) >>> 32));
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.distance) ^ (Double.doubleToLongBits(this.distance) >>> 32));
+        return hash;
+    }
+    
+    
 }

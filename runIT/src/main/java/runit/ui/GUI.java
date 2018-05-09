@@ -25,8 +25,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import runit.dao.ExerciseDao;
-import runit.dao.UserDao;
+import runit.dao.*;
 import runit.dao.util.Database;
 import runit.domain.*;
 
@@ -47,13 +46,13 @@ public class GUI extends Application {
 
         Properties properties = new Properties();
         File config = new File("config.properties");
-        
+
         if (!config.exists()) {
             config.createNewFile();
             Path path = Paths.get("config.properties");
             Files.write(path, Arrays.asList("databaseFile=database.db"), Charset.forName("UTF-8"));
         }
-        
+
         properties.load(new FileInputStream("config.properties"));
         String databaseFileName = properties.getProperty("databaseFile");
 
@@ -307,11 +306,13 @@ public class GUI extends Application {
         primaryStage.setScene(loginScene);
         primaryStage.show();
         primaryStage.setOnCloseRequest(e -> {
-            System.out.println("closing");
-            System.out.println(logic.getUser());
+
             if (logic.getUser() != null) {
-                e.consume();
+                String name = logic.getUser().toString();
+                logic.logout();
+                System.out.println("logged out user '" + name + "'");
             }
+            System.out.println("closing");
         });
     }
 

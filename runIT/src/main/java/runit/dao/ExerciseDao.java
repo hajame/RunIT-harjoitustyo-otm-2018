@@ -109,7 +109,6 @@ public class ExerciseDao implements Dao<Exercise, Exercise> {
         conn.close();
 
         Exercise newExercise = findOne(exercise);
-
         return newExercise;
     }
 

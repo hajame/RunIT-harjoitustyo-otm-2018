@@ -5,7 +5,7 @@ import java.util.List;
 import runit.dao.*;
 
 /**
- * Class responsible for application logic. Accesses user and exercise data via 
+ * Class responsible for application logic. Accesses user and exercise data via
  * DAO-classes. Stores statistical data in Statistics object.
  */
 public class Logic {
@@ -103,8 +103,13 @@ public class Logic {
      * @return Timestamp object
      */
     public Timestamp createTimestamp(String string) {
-        Timestamp timestamp = Timestamp.valueOf(string + ":00.0");
-        return timestamp;
+        try {
+            Timestamp timestamp = Timestamp.valueOf(string + ":00.0");
+            return timestamp;
+        } catch (Exception e) {
+            System.out.println("Wrong time format");
+        }
+        return null;
     }
 
     /**
@@ -126,6 +131,11 @@ public class Logic {
             System.out.println("Wrong duration format");
             return -1;
         }
+
+        if (hours < 0 || minutes > 59 || seconds > 59) {
+            System.out.println("Wrong duration format");
+            return -1;
+        }
         return hours * 60 * 60 + minutes * 60 + seconds;
     }
 
@@ -136,6 +146,10 @@ public class Logic {
      * @return Exercise object with User and id attributes.
      */
     public Exercise addExercise(Exercise exercise) {
+        if (exercise == null) {
+            return null;
+        }
+
         exercise.setUser(user);
         try {
             Exercise a = exerciseDao.save(exercise);
