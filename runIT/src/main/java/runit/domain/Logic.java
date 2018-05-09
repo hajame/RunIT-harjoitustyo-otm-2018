@@ -152,7 +152,6 @@ public class Logic {
         if (exercise == null) {
             return null;
         }
-
         exercise.setUser(user);
         try {
             Exercise a = exerciseDao.save(exercise);

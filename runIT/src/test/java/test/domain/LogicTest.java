@@ -7,7 +7,6 @@ package test.domain;
 
 import java.io.File;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
 import org.junit.Before;
@@ -53,7 +52,7 @@ public class LogicTest {
         UserDao userDao = new UserDao(database);
         ExerciseDao exerciseDao = new ExerciseDao(database);
         logic = new Logic(userDao, exerciseDao);
-        logic.signupUser(user.getUsername(), user.getPassword());
+        logic.loginUser(user.getUsername(), user.getPassword());
         
     }
     

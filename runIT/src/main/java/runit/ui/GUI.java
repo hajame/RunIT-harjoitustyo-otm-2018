@@ -212,6 +212,10 @@ public class GUI extends Application {
         Button exercisesView = new Button("exercises");
         Label totalExercises = new Label("Total exercises: \t" + 0);
         totalExercises.setMinWidth(30);
+        Label totalDistance = new Label("Total distance: \t" + 0);
+        totalDistance.setMinWidth(30);
+        Label totalDuration = new Label("Total duration: \t" + 0);
+        totalDuration.setMinWidth(30);
         Label avgSpeed = new Label("Average speed: \t" + 0);
         avgSpeed.setMinWidth(30);
         Label avgDuration = new Label("Average duration: \t" + 0);
@@ -228,7 +232,7 @@ public class GUI extends Application {
             primaryStage.setScene(loginScene);
         });
 
-        infoPane.getChildren().addAll(totalExercises, avgSpeed, avgDuration, avgDistance);
+        infoPane.getChildren().addAll(totalExercises, totalDistance, totalDuration, avgSpeed, avgDuration, avgDistance);
         summaryPane.setTop(summaryMenu);
 
         // runitScene (main scene)
@@ -245,6 +249,10 @@ public class GUI extends Application {
         summaryButton.setOnAction(e -> {
             totalExercises.setText("Total exercises: \t"
                     + logic.getStatistics().getTotalExercises());
+            totalDistance.setText("Total distance: \t"
+                    + logic.getStatistics().getTotalDistance());
+            totalDuration.setText("Total duration: \t"
+                    + logic.getStatistics().getTotalDuration());
             avgSpeed.setText("Average speed: \t"
                     + logic.getStatistics().getAvgExercise().getAvgSpeed());
             avgDuration.setText("Average duration: \t"

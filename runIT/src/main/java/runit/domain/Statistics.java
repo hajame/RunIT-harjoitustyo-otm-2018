@@ -11,6 +11,8 @@ public class Statistics {
 
     private Integer totalExercises;
     private Exercise avgExercise;
+    private Double totalDistance;
+    private Long totalDuration;
 
     /**
      * Constructor enters placeholder values. The 'time' value for avgExercise is never used.
@@ -18,6 +20,8 @@ public class Statistics {
     public Statistics() {
         this.totalExercises = 0;
         this.avgExercise = new Exercise(Timestamp.valueOf("2018-12-31 00:00:00.0"), 0, 0.0);
+        this.totalDistance = 0.0;
+        this.totalDuration = 0l;
     }
 
     /**
@@ -36,6 +40,8 @@ public class Statistics {
             avgDuration.addValue(a.getDuration());
         }
         totalExercises = exercises.size();
+        totalDistance = avgDistance.getSum();
+        totalDuration = (long) avgDuration.getSum();
         avgExercise.setDistance(avgDistance.getMean());
         avgExercise.setDuration((int) avgDuration.getMean());
         avgExercise.setAvgSpeed(avgSpeed.getMean());
@@ -48,4 +54,19 @@ public class Statistics {
     public Exercise getAvgExercise() {
         return avgExercise;
     }
+
+    public double getTotalDistance() {
+        return totalDistance;
+    }
+    
+    public String getTotalDuration() {
+        int hours, minutes, seconds;
+        
+        hours = (int) (totalDuration / 3600);
+        minutes = (int) (totalDuration % 3600) / 60;
+        seconds = (int) (totalDuration % 60);
+        
+        return String.format("%d:%02d:%02d", hours, minutes, seconds);
+    }
+    
 }

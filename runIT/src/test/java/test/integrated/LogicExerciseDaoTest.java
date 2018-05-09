@@ -53,7 +53,7 @@ public class LogicExerciseDaoTest {
         UserDao userDao = new UserDao(database);
         ExerciseDao exerciseDao = new ExerciseDao(database);
         logic = new Logic(userDao, exerciseDao);
-        logic.signupUser(user.getUsername(), user.getPassword());
+        logic.loginUser(user.getUsername(), user.getPassword());
 
     }
 
