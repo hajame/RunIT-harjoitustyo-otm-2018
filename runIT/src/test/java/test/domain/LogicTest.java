@@ -67,6 +67,12 @@ public class LogicTest {
         Timestamp timestamp = logic.createTimestamp(comp);
         assertEquals(timestamp.toString().substring(0, 16), comp);
     }
+    
+    @Test
+    public void createTimestampWrongFormatTest() {
+        String comp = "31-01-2018 10:10";
+        assertEquals(null, logic.createTimestamp(comp));
+    }
         
     @Test
     public void createDurationTest() {

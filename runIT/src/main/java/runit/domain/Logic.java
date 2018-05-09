@@ -176,17 +176,4 @@ public class Logic {
             System.out.println("Failed to delete exercise.");
         }
     }
-
-    /**
-     * Deletes a User from the database.
-     *
-     * @param username
-     */
-    public void deleteUser(String username) {
-        try {
-            userDao.delete(username);
-        } catch (Exception e) {
-            System.out.println("Failed to delete user.");
-        }
-    }
 }

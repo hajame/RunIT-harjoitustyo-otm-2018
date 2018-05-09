@@ -70,7 +70,11 @@ public class LogicUserDaoTest {
     public void signupUserTest() {
         assertEquals(logic.signupUser("testUser", "testPass"), "Login successful");
         assertEquals(logic.loginUser("testUser", "testPass"), "Login successful");
-        logic.deleteUser("testUser");
+    }
+
+    @Test
+    public void signupUserThatAlreadyExistsTest() {
+        assertEquals(logic.signupUser("test", "test"), "Username taken");
     }
 
 }
