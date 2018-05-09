@@ -19,12 +19,17 @@ public class ExerciseDao implements Dao<Exercise, Exercise> {
 
     private Database database;
 
+    /**
+     * Creates a new ExerciseDao.
+     *
+     * @param database
+     */
     public ExerciseDao(Database database) {
         this.database = database;
     }
 
     /**
-     * Finds an exercise from the database and if found returns an Exercise
+     * Finds an exercise from the database. If found, returns an Exercise
      * object.
      *
      * @param exercise User id required
@@ -67,7 +72,8 @@ public class ExerciseDao implements Dao<Exercise, Exercise> {
 
         try (Connection conn = database.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Exercise, User "
-                    + "WHERE username = ? AND user_id = user.id");
+                    + "WHERE username = ? AND user_id = user.id "
+                    + "ORDER BY time DESC");
             stmt.setString(1, user.getUsername());
             ResultSet result = stmt.executeQuery();
 
@@ -99,7 +105,8 @@ public class ExerciseDao implements Dao<Exercise, Exercise> {
      */
     public Exercise save(Exercise exercise) throws SQLException {
         Connection conn = database.getConnection();
-        PreparedStatement stmt = conn.prepareStatement("INSERT INTO Exercise (user_id, time, duration, distance) values (?, ?, ?, ?)");
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO Exercise "
+                + "(user_id, time, duration, distance) values (?, ?, ?, ?)");
         stmt.setInt(1, exercise.getUser().getId());
         stmt.setString(2, exercise.time() + ":00");
         stmt.setInt(3, exercise.getDuration());
@@ -113,14 +120,10 @@ public class ExerciseDao implements Dao<Exercise, Exercise> {
     }
 
     /**
-     * Updates an Exercise in the database.
-     *
-     * @param exercise
-     * @return updated exercise
-     * @throws SQLException
+     * Not supported in this class.
      */
     public Exercise update(Exercise exercise) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        throw new UnsupportedOperationException("Not supported in this class.");
     }
 
     /**
@@ -140,12 +143,11 @@ public class ExerciseDao implements Dao<Exercise, Exercise> {
     }
 
     /**
-     * @return List of all exercises found in the database.
-     * @throws SQLException
+     * Not supported in this class.
      */
     @Override
     public List<Exercise> findAll() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported in this class.");
     }
 
 }

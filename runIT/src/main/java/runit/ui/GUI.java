@@ -7,6 +7,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.Path;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
@@ -129,9 +131,9 @@ public class GUI extends Application {
             if (logic.loginUser(username, password).equals("Login successful")) {
                 loginMessage.setText("");
                 redrawExerciseList();
-                primaryStage.setScene(runitScene);
                 userInput.setText("");
                 passInput.setText("");
+                primaryStage.setScene(runitScene);
             } else {
                 loginMessage.setText("User does not exist");
                 loginMessage.setTextFill(Color.RED);
@@ -180,13 +182,17 @@ public class GUI extends Application {
             } else if (username.length() > 32 || pass.length() > 32) {
                 userCreationMessage.setText("username or password too long");
                 userCreationMessage.setTextFill(Color.RED);
-            } else if (logic.signupUser(username, pass).equals("Login successful")) {
+            }
+            String result = logic.signupUser(username, pass);
+            if (result.equals("Login successful")) {
                 userCreationMessage.setText("");
+                newUsernameInput.setText("");
+                newPassInput.setText("");
                 loginMessage.setText("new user created");
                 loginMessage.setTextFill(Color.GREEN);
                 primaryStage.setScene(loginScene);
-            } else {
-                userCreationMessage.setText("username has to be unique");
+            } else if (result.equals("Username taken")) {
+                userCreationMessage.setText("username taken");
                 userCreationMessage.setTextFill(Color.RED);
             }
         });
@@ -254,6 +260,10 @@ public class GUI extends Application {
 
         menuPane.getChildren().addAll(menuLabel, menuSpacer, summaryButton, logoutButton);
 
+        DateTimeFormatter yearMonthDate = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter hoursMinutes = DateTimeFormatter.ofPattern("HH:mm");
+        LocalDateTime now = LocalDateTime.now();
+
         HBox createForm = new HBox(30);
         Button createExercise = new Button("add");
         createExercise.setMinWidth(60);
@@ -261,23 +271,23 @@ public class GUI extends Application {
         HBox.setHgrow(spacer, Priority.ALWAYS);
         Label dateLabel = new Label("date");
         dateLabel.setMinWidth(30);
-        TextField date = new TextField("2018-12-31");
-        date.setPromptText("2018-12-31");
+        TextField date = new TextField(yearMonthDate.format(now));
+        date.setPromptText(yearMonthDate.format(now));
         date.setMaxWidth(100);
         Label timeLabel = new Label("time");
         timeLabel.setMinWidth(30);
-        TextField time = new TextField("10:00");
-        time.setPromptText("10:00");
+        TextField time = new TextField(hoursMinutes.format(now));
+        time.setPromptText(hoursMinutes.format(now));
         time.setMaxWidth(60);
         Label durationLabel = new Label("duration");
         durationLabel.setMinWidth(55);
-        TextField duration = new TextField("01:00:00");
-        duration.setPromptText("01:00:00");
+        TextField duration = new TextField("00:30:00");
+        duration.setPromptText("00:30:00");
         duration.setMaxWidth(100);
         Label distanceLabel = new Label("distance");
         distanceLabel.setMinWidth(60);
-        TextField distance = new TextField("10.00");
-        distance.setPromptText("10.00");
+        TextField distance = new TextField("5.00");
+        distance.setPromptText("5.00");
         distance.setMaxWidth(60);
         createForm.getChildren().addAll(dateLabel, date, timeLabel, time, durationLabel, duration, distanceLabel, distance, spacer, createExercise);
 
@@ -294,10 +304,10 @@ public class GUI extends Application {
             Timestamp timestamp = logic.createTimestamp(date.getText() + " " + time.getText());
             int seconds = logic.createDuration(duration.getText());
             logic.addExercise(new Exercise(timestamp, seconds, Double.parseDouble(distance.getText())));
-            date.setText("");
-            time.setText("");
-            duration.setText("");
-            distance.setText("");
+            date.setText(yearMonthDate.format(LocalDateTime.now()));
+            time.setText(hoursMinutes.format(LocalDateTime.now()));
+            duration.setText("00:30:00");
+            distance.setText("5.00");
             redrawExerciseList();
         });
 
@@ -306,7 +316,6 @@ public class GUI extends Application {
         primaryStage.setScene(loginScene);
         primaryStage.show();
         primaryStage.setOnCloseRequest(e -> {
-
             if (logic.getUser() != null) {
                 String name = logic.getUser().toString();
                 logic.logout();

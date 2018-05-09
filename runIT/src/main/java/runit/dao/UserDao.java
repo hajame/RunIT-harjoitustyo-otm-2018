@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package runit.dao;
 
 import java.sql.Connection;
@@ -13,6 +8,9 @@ import java.util.List;
 import runit.dao.util.Database;
 import runit.domain.User;
 
+/**
+ * DAO (Data Access Object) class for interacting with database's User table.
+ */
 public class UserDao implements Dao<User, String> {
 
     private Database database;
@@ -21,11 +19,18 @@ public class UserDao implements Dao<User, String> {
         this.database = database;
     }
 
+    /**
+     * Finds a user from the database. If found, returns a User object.
+     *
+     * @param username
+     * @return User or null if not found.
+     * @throws SQLException
+     */
     @Override
-    public User findOne(String key) throws SQLException {
+    public User findOne(String username) throws SQLException {
         Connection conn = database.getConnection();
         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM User WHERE username = ?");
-        stmt.setString(1, key);
+        stmt.setString(1, username);
 
         ResultSet rs = stmt.executeQuery();
         if (!rs.next()) {
@@ -40,22 +45,41 @@ public class UserDao implements Dao<User, String> {
         return a;
     }
 
+    /**
+     * Not supported in this class.
+     */
     @Override
     public List<User> findAll() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        throw new UnsupportedOperationException("Not supported in this class.");
     }
 
+    /**
+     * Saves or Updates a User in the database.
+     * 
+     * @param user User object with or without id.
+     * @return User object with database id.
+     * @throws SQLException 
+     */
     @Override
     public User saveOrUpdate(User user) throws SQLException {
 
-        if (findOne(user.getUsername()) == null) {
+        User foundUser = findOne(user.getUsername());
+        
+        if (foundUser == null) {
             User a = save(user);
             return a;
         }
 
-        return update(user);
+        return foundUser;
     }
 
+    /**
+     * Saves a User in the database.
+     *
+     * @param user User object.
+     * @return User object complete with an id.
+     * @throws SQLException
+     */
     public User save(User user) throws SQLException {
         Connection conn = database.getConnection();
         PreparedStatement stmt = conn.prepareStatement("INSERT INTO User (username, password) values (?, ?)");
@@ -69,28 +93,18 @@ public class UserDao implements Dao<User, String> {
         return newUser;
     }
 
+    /**
+     * Not supported in this class.
+     */
     public User update(User user) throws SQLException {
-        Connection conn = database.getConnection();
-        PreparedStatement stmt = conn.prepareStatement("UPDATE USER SET password = ? WHERE username = ?");
-        stmt.setString(1, user.getPassword());
-        stmt.setString(2, user.getUsername());
-        stmt.executeUpdate();
-        stmt.close();
-        conn.close();
-
-        User updatedUser = findOne(user.getUsername());
-        return updatedUser;
+        throw new UnsupportedOperationException("Not supported in this class.");
     }
 
-    @Override
+    /**
+     * Not supported in this class.
+     */
     public void delete(String username) throws SQLException {
-        Connection conn = database.getConnection();
-        PreparedStatement stmt = conn.prepareStatement("DELETE FROM User WHERE username = ?");
-        stmt.setString(1, username);
-        stmt.executeUpdate();
-        stmt.close();
-        conn.close();
-
+        throw new UnsupportedOperationException("Not supported in this class.");
     }
 
 }

@@ -82,13 +82,18 @@ public class Logic {
      * @return "Login successful" or "Error: + msg"
      */
     public String signupUser(String username, String password) {
-
+        User newUser = null;
+        
         try {
-            User user = userDao.saveOrUpdate(new User(username, password));
-            this.user = user;
-            return "Login successful";
+            newUser = userDao.saveOrUpdate(new User(username, password));
         } catch (Exception e) {
             return "Error: " + e.toString();
+        }
+        if (newUser.getPassword().equals(password)) {
+            newUser = user;
+            return "Login successful";
+        } else {
+            return "Username taken";
         }
     }
 
@@ -119,9 +124,7 @@ public class Logic {
      * @return duration as seconds
      */
     public Integer createDuration(String duration) {
-        int hours;
-        int minutes;
-        int seconds;
+        int hours, minutes, seconds;
 
         try {
             hours = Integer.parseInt(duration.substring(0, 2));

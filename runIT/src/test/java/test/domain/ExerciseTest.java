@@ -1,24 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package test.domain;
 
 import runit.domain.Exercise;
 import java.sql.Timestamp;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import runit.domain.User;
 
-/**
- *
- * @author hajame
- */
 public class ExerciseTest {
 
     private Exercise exercise;
@@ -29,13 +18,10 @@ public class ExerciseTest {
 
     @Before
     public void setUp() {
-
         Timestamp timestamp = Timestamp.valueOf("2018-01-31 10:10:10.0");
-
         exercise = new Exercise(timestamp, 3600, 10.00);
         user = new User("user", "password");
         exercise.setUser(user);
-
     }
 
     @After
@@ -45,7 +31,7 @@ public class ExerciseTest {
     @Test
     public void toStringTest() {
         String string = exercise.toString();
-        assertEquals("id (null) 2018-01-31 10:10, duration 01:00:00, avgSpeed 10.00 km/h, distance 10.00 km", string);
+        assertEquals("2018-01-31 10:10, duration 01:00:00, avgSpeed 10.00 km/h, distance 10.00 km", string);
     }
 
     @Test
@@ -61,15 +47,4 @@ public class ExerciseTest {
         User user = new User("user", "password");
         assertEquals(user.toString(), exercise.getUser().toString());
     }
-
-    @Test
-    public void hashCodeTest() {
-
-        Timestamp timestamp = Timestamp.valueOf("2018-01-31 10:10:10.0");
-
-        Exercise comp = new Exercise(timestamp, 3600, 10.00);
-        comp.setUser(user);
-        assertEquals(exercise.hashCode(), comp.hashCode());
-    }
-
 }
