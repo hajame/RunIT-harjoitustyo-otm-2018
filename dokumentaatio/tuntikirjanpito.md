@@ -21,4 +21,5 @@
 | 1.5. | 4 | Lisää Statistics-luokan toiminnallisuutta. Summary-sivu vaatimusmäärittelyn mukainen. Alustavan arkkitehtuurikuvauksen työstämistä. |
 | 2.5. | 5 | Logiikka luokalle DAOjen injektio luokan ulkopuolelta. Käyttöohje laadittu. Alusta arkkitehtuurikuvaus on sovelluslogiikan, käyttöliittymän ja sovelluslogiikan osalta valmis. Uusi release: viikko6. |
 | 6.5. | 4 | Palautteen läpikäynti (Issue). Harjoituksen tietojensyöttökenttien malliteksi (PromptText). Tietokantatiedoston nimi konfiguroitavissa. Käyttöohjeen päivitys. |
-| yht   | 64    |    | 
+| 9.5. | 9 | Paljon testejä, rivikattavuus > 90%. Testien pakkausrakenteen muutos. Harjoitusten järjestäminen päivän mukaan. Järjestelmän päiväyksen haku tietokenttiin. Ohjelman sulkeminen mistä tahansa näkymästä. Harjoitusten kokonaispituus ja -keston summary-näkymään. Javadoc tehty kaikille luokille paitsi GUI:lle.|
+| yht   | 73    |    | 

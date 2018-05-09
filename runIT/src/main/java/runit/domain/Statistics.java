@@ -59,6 +59,9 @@ public class Statistics {
         return totalDistance;
     }
     
+    /**
+     * @return total duration of exercises in HH:MM:SS format
+     */
     public String getTotalDuration() {
         int hours, minutes, seconds;
         
