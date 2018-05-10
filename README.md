@@ -2,7 +2,7 @@
 
 Sovelluksen avulla käyttäjä voi pitää kirjaa juoksuharjoituksistaan. Sovellus tarjoaa käyttäjälle tilastotietoa harjoituksista yhteenvetonäkymässä. Sovellusta voi käyttää eri käyttäjätileillä, joilla on kaikilla omat harjoituksensa.
 
-Ohjelma on harjoitustyö kurssille Ohjelmistotekniikan menetelmät.
+Ohjelma on harjoitustyö Helsingin Yliopiston kurssille Ohjelmistotekniikan menetelmät.
 
 ## Dokumentaatio
 
