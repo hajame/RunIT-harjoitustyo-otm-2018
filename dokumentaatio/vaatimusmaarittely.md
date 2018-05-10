@@ -4,11 +4,17 @@
 
 Sovelluksen avulla käyttäjien on mahdollista seurata oman kuntonsa kehitystä kirjaamalla juoksu- tai kävelylenkkeihin liittyvää tietoa. Sovellusta on mahdollista käyttää useamman rekisteröityneen käyttäjän, joilla on kaikilla oma yksilöllinen lenkkihistoriansa. 
 
-Ohjelma tarjoaa mahdollisuuden tarkastella yksittäisen lenkin tietoja. Lisäksi ohjelma esittää käyttäjälle koottua tietoa kunnon kehittymisestä näyttämällä tietyltä aikajaksolta lenkkien määrän, keskinopeuden, sekä matkojen keskipituuden.
+Ohjelma tarjoaa mahdollisuuden tarkastella yksittäisen lenkin tietoja. Lisäksi ohjelma esittää käyttäjälle koottua tietoa kunnon kehittymisestä näyttämällä kaikkien lenkkien
+
+- kokonaismäärän
+- pituuden
+- keston 
+- keskinopeuden
+- ja keskipituuden.
 
 ## Käyttäjät
 
-Alkuvaiheessa sovelluksella on ainoastaan yksi käyttäjärooli eli **normaali käyttäjä.** Myöhemmin sovellukseen saatetaan lisätä suuremmilla oikeuksilla varustettu **pääkäyttäjä**.
+Sovelluksella on yksi käyttäjärooli, **normaali käyttäjä**. Sovelluksella voi olla useita käyttäjiä, jotka kirjautuvat sovellukseen salasanalla.
 
 ## Käyttöliittymäluonnos
 
@@ -21,31 +27,34 @@ Ohjelma avautuu kirjautumisnäkymään, josta voidaan siirtyä uuden käyttäjä
 ### Ennen kirjautumista
 
 - käyttäjä voi luoda itselleen käyttätunnuksen  
-    - tunnuksen täytyy olla uniikki  
-    
+    - tunnuksen täytyy olla uniikki ja vähintään 3 merkkiä pitkä
+    - jos tunnus on varattu, eli tietokannassa on jo sama tunnus, käyttäjä saa siitä ilmoituksen 
 - käyttäjä voi kirjautua järjestelmään
 
 ### Kirjautumisen jälkeen
 
-- käyttäjä näkee oman lenkkihistoriansa viimeisemmät tapahtumat
+- harjoitusnäkymässä käyttäjä näkee oman lenkkihistoriansa aikajärjestyksessä
+    - tuorein tapahtuma on listan ensimmäisenä
 - käyttäjä voi kirjata uuden lenkin
     - lenkki näkyy vain sen luoneelle käyttäjälle
     - lenkin tietoihin kirjataan
         - päivämäärä ja aika  
         - lenkin kesto
         - lenkin pituus
-- käyttäjä saa halutessaan näkyviin listan kaikista lenkeistä
-    - listalta voi valita yksittäisen lenkin ja tarkastella sen tietoja
-- käyttäjä voi siirtyä tilastonäkymään, jossa näkyy 
-    - kaikkien lenkkien määrä, aikojen keskiarvo, ja keskipituus  
+- käyttäjä voi poistaa yksittäisiä lenkkimerkintöjä
+- käyttäjä voi siirtyä tilastonäkymään, jossa näkyy kaikkien lenkkien
+    - kokonaismäärä
+    - pituus
+    - kesto 
+    - keskinopeus
+    - keskipituus
+- käyttäjä voi siityä takaisin harjoitusnkymään    
 - käyttäjä voi kirjautua ulos järjestelmästä
-
 
 ## Jatkokehitysideoita
 
 Perusversion jälkeen järjestelmää täydennetään (jos aika sallii) seuraavilla toiminnallisuuksilla
 
-- lenkkitietojen poistaminen
 - lenkkitietojen muokkaaminen
 - halutun aikavälin (viikko / kuukausi) tilastot
 - käyttäjien yhteyteen salasana, joka vaaditaan kirjautuessa
