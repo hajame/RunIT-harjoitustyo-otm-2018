@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package test.integrated;
 
 import java.io.File;
@@ -21,10 +16,6 @@ import runit.domain.Exercise;
 import runit.domain.Logic;
 import runit.domain.User;
 
-/**
- *
- * @author hajame
- */
 public class LogicExerciseDaoTest {
 
     private Exercise exercise;
@@ -54,7 +45,6 @@ public class LogicExerciseDaoTest {
         ExerciseDao exerciseDao = new ExerciseDao(database);
         logic = new Logic(userDao, exerciseDao);
         logic.loginUser(user.getUsername(), user.getPassword());
-
     }
 
     @After
@@ -68,6 +58,11 @@ public class LogicExerciseDaoTest {
         assertEquals(comp.time(), exercise.time());
         assertEquals(comp.getDuration(), exercise.getDuration());
         assertEquals(comp.getUser().toString(), exercise.getUser().toString());
+    }
+    
+    @Test
+    public void badDataBaseAddress() {
+        
     }
     
     @Test

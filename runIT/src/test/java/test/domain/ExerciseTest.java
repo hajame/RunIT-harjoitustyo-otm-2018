@@ -41,6 +41,13 @@ public class ExerciseTest {
         assertEquals(timestamp, exercise.getTime());
         assertEquals(3600, exercise.getDuration());
     }
+    
+    @Test
+    public void setTimeTest() {
+        Timestamp timestamp = Timestamp.valueOf("2018-01-31 10:50:10.0");
+        exercise.setTime(timestamp);
+        assertEquals(exercise.getTime(), timestamp);
+    }
 
     @Test
     public void getUserTest() {
