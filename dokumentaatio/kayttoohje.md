@@ -29,7 +29,10 @@ Sovellus käynnistyy kirjautumisnäkymään:
 
 ![Kirjautumisnäkymä](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/loginScreen.png)
 
-Kirjautuminen onnistuu kirjoittamalla olemassaoleva käyttäjätunnus ja salasana syötekenttiin ja painamalla _login_. Onnistuneen kirjautumisen jälkeen siirrytään harjoitukset-näkymään (exercises)
+Kirjautuminen onnistuu kirjoittamalla olemassaoleva käyttäjätunnus ja salasana syötekenttiin ja painamalla _login_. Onnistuneen kirjautumisen jälkeen siirrytään harjoitukset-näkymään (exercises).
+
+Mikäli haluat kokeilla ohjelmaa luomatta uutta käyttäjää, voit kirjautua tunnuksilla: 
+- Username: _test_ Password: _pass_
 
 ## Uuden käyttäjän luominen
 
