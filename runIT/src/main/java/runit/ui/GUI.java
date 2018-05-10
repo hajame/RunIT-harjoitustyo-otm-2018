@@ -31,21 +31,46 @@ import runit.dao.*;
 import runit.dao.util.Database;
 import runit.domain.*;
 
+/**
+ * Class responsible for application behavior and graphical user interface.
+ * Main class for the application.
+ */
 public class GUI extends Application {
 
     private Logic logic;
-
     private Scene runitScene;
     private Scene summaryScene;
     private Scene newUserScene;
     private Scene loginScene;
-
     private VBox exerciseNodes;
     private Label menuLabel = new Label();
 
+    /**
+     * Initializes application Logic.
+     * 
+     * @throws Exception 
+     */
     @Override
     public void init() throws Exception {
+        Properties properties = getProperties();
 
+        String databaseFileName = properties.getProperty("databaseFile");
+        Database database = getDatabase(databaseFileName);
+
+        UserDao userDao = new UserDao(database);
+        ExerciseDao exerciseDao = new ExerciseDao(database);
+        this.logic = new Logic(userDao, exerciseDao);
+    }
+
+    /**
+     * Reads the name of the database file from configuration file. 
+     * If not found creates a new configuration file "config.properties"
+     * with a standard database name "database.db".
+     * 
+     * @return Properties including name of the database.
+     * @throws Exception 
+     */
+    public Properties getProperties() throws Exception {
         Properties properties = new Properties();
         File config = new File("config.properties");
 
@@ -54,27 +79,39 @@ public class GUI extends Application {
             Path path = Paths.get("config.properties");
             Files.write(path, Arrays.asList("databaseFile=database.db"), Charset.forName("UTF-8"));
         }
-
         properties.load(new FileInputStream("config.properties"));
-        String databaseFileName = properties.getProperty("databaseFile");
+        return properties;
+    }
 
+    /**
+     * Creates a new Database object with the given database name. If the 
+     * database does not exist, the init() method creates the database, tables 
+     * and a test user.
+     * 
+     * @param databaseFileName name of the database file
+     * @return Database object
+     * @throws Exception 
+     */
+    public Database getDatabase(String databaseFileName) throws Exception {
         Database database = null;
         try {
             File file = new File(databaseFileName);
             database = new Database("jdbc:sqlite:" + file.getAbsolutePath());
             database.init();
-
         } catch (Exception e) {
             System.out.println("Incorrect database address. --- " + e);
         }
-        UserDao userDao = new UserDao(database);
-        ExerciseDao exerciseDao = new ExerciseDao(database);
-        this.logic = new Logic(userDao, exerciseDao);
-
+        return database;
     }
 
+    /**
+     * Creates a Node object consisting of the exercise's string format and 
+     * a "delete" button.
+     * 
+     * @param exercise
+     * @return Node containing exercise in String format and a "delete" button.
+     */
     public Node createExerciseNode(Exercise exercise) {
-
         HBox box = new HBox(10);
         Label label = new Label(exercise.toString());
         label.setMinHeight(28);
@@ -83,32 +120,37 @@ public class GUI extends Application {
             logic.deleteExercise(exercise);
             redrawExerciseList();
         });
-
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
         box.setPadding(new Insets(1, 1, 1, 0));
-
         box.getChildren().addAll(label, spacer, button);
         return box;
     }
 
+    /**
+     * Updates the Exercise list. Clears the VBox exerciseNodes, retrieves
+     * exercise history from logic, turns exercises into Nodes, and adds them 
+     * into exerciseNodes.
+     */
     public void redrawExerciseList() {
-
         if (logic.getUser() == null) {
             return;
         }
         exerciseNodes.getChildren().clear();
-
         List<Exercise> exercises = logic.getHistory();
         exercises.forEach(oneExercise -> {
             exerciseNodes.getChildren().add(createExerciseNode(oneExercise));
         });
     }
 
+    /**
+     * Application graphical user interface elements and UI logic for buttons.
+     * 
+     * @param primaryStage 
+     */
     @Override
     public void start(Stage primaryStage) {
         // login scene
-
         VBox loginPane = new VBox(10);
         VBox inputPane = new VBox(10);
         loginPane.setPadding(new Insets(10));
@@ -145,12 +187,10 @@ public class GUI extends Application {
             passInput.setText("");
             primaryStage.setScene(newUserScene);
         });
-
         loginPane.getChildren().addAll(loginMessage, inputPane, loginButton, createButton);
-
         loginScene = new Scene(loginPane, 480, 250);
 
-        // new createNewUserScene
+        // newUserScene
         VBox newUserPane = new VBox(10);
 
         HBox newUsernamePane = new HBox(10);
@@ -197,7 +237,8 @@ public class GUI extends Application {
             }
         });
 
-        newUserPane.getChildren().addAll(userCreationMessage, newUsernamePane, newPassPane, createNewUserButton);
+        newUserPane.getChildren().addAll(userCreationMessage, newUsernamePane, 
+                newPassPane, createNewUserButton);
         newUserScene = new Scene(newUserPane, 480, 250);
 
         // summary scene
@@ -212,17 +253,18 @@ public class GUI extends Application {
         Button exercisesView = new Button("exercises");
         Label totalExercises = new Label("Total exercises: \t" + 0);
         totalExercises.setMinWidth(30);
-        Label totalDistance = new Label("Total distance: \t" + 0);
+        Label totalDistance = new Label("Total distance: \t" + 0 +" km");
         totalDistance.setMinWidth(30);
         Label totalDuration = new Label("Total duration: \t" + 0);
         totalDuration.setMinWidth(30);
-        Label avgSpeed = new Label("Average speed: \t" + 0);
+        Label avgSpeed = new Label("Average speed: \t" + 0 + " km/h");
         avgSpeed.setMinWidth(30);
         Label avgDuration = new Label("Average duration: \t" + 0);
         avgDuration.setMinWidth(30);
-        Label avgDistance = new Label("Average distance: \t" + 0);
+        Label avgDistance = new Label("Average distance: \t" + 0 + " km");
         avgDistance.setMinWidth(30);
-        summaryMenu.getChildren().addAll(summaryLabel, summaryMenuSpacer, exercisesView, summaryLogoutButton);
+        summaryMenu.getChildren().addAll(summaryLabel, summaryMenuSpacer, 
+                exercisesView, summaryLogoutButton);
 
         exercisesView.setOnAction(e -> {
             primaryStage.setScene(runitScene);
@@ -232,7 +274,8 @@ public class GUI extends Application {
             primaryStage.setScene(loginScene);
         });
 
-        infoPane.getChildren().addAll(totalExercises, totalDistance, totalDuration, avgSpeed, avgDuration, avgDistance);
+        infoPane.getChildren().addAll(totalExercises, totalDistance, totalDuration, 
+                avgSpeed, avgDuration, avgDistance);
         summaryPane.setTop(summaryMenu);
 
         // runitScene (main scene)
@@ -250,15 +293,15 @@ public class GUI extends Application {
             totalExercises.setText("Total exercises: \t"
                     + logic.getStatistics().getTotalExercises());
             totalDistance.setText("Total distance: \t"
-                    + logic.getStatistics().getTotalDistance());
+                    + logic.getStatistics().getTotalDistance() + " km");
             totalDuration.setText("Total duration: \t"
                     + logic.getStatistics().getTotalDuration());
             avgSpeed.setText("Average speed: \t"
-                    + logic.getStatistics().getAvgExercise().getAvgSpeed());
+                    + logic.getStatistics().getAvgExercise().getAvgSpeed() + " km/h");
             avgDuration.setText("Average duration: \t"
                     + logic.getStatistics().getAvgExercise().durationToString());
             avgDistance.setText("Average distance: \t"
-                    + logic.getStatistics().getAvgExercise().getDistance());
+                    + logic.getStatistics().getAvgExercise().getDistance() + " km");
             primaryStage.setScene(summaryScene);
         });
         logoutButton.setOnAction(e -> {
@@ -267,7 +310,7 @@ public class GUI extends Application {
         });
 
         menuPane.getChildren().addAll(menuLabel, menuSpacer, summaryButton, logoutButton);
-
+        
         DateTimeFormatter yearMonthDate = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         DateTimeFormatter hoursMinutes = DateTimeFormatter.ofPattern("HH:mm");
         LocalDateTime now = LocalDateTime.now();
@@ -292,12 +335,13 @@ public class GUI extends Application {
         TextField duration = new TextField("00:30:00");
         duration.setPromptText("00:30:00");
         duration.setMaxWidth(100);
-        Label distanceLabel = new Label("distance");
+        Label distanceLabel = new Label("distance (km)");
         distanceLabel.setMinWidth(60);
         TextField distance = new TextField("5.00");
         distance.setPromptText("5.00");
         distance.setMaxWidth(60);
-        createForm.getChildren().addAll(dateLabel, date, timeLabel, time, durationLabel, duration, distanceLabel, distance, spacer, createExercise);
+        createForm.getChildren().addAll(dateLabel, date, timeLabel, time, 
+                durationLabel, duration, distanceLabel, distance, spacer, createExercise);
 
         exerciseNodes = new VBox(10);
         exerciseNodes.setMaxWidth(820);
@@ -309,7 +353,8 @@ public class GUI extends Application {
         mainPane.setTop(menuPane);
 
         createExercise.setOnAction(e -> {
-            Timestamp timestamp = logic.createTimestamp(date.getText() + " " + time.getText());
+            Timestamp timestamp = logic.createTimestamp(date.getText() + 
+                    " " + time.getText());
             int seconds = logic.createDuration(duration.getText());
             logic.addExercise(new Exercise(timestamp, seconds, Double.parseDouble(distance.getText())));
             date.setText(yearMonthDate.format(LocalDateTime.now()));
@@ -336,5 +381,4 @@ public class GUI extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
 }

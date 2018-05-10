@@ -54,7 +54,8 @@ public class UserDao implements Dao<User, String> {
     }
 
     /**
-     * Saves or Updates a User in the database.
+     * Saves a User in the database. Updating password or username may become
+     * supported in the future.
      * 
      * @param user User object with or without id.
      * @return User object with database id.
