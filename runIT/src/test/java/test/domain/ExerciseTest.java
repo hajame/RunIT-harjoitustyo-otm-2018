@@ -12,20 +12,13 @@ public class ExerciseTest {
 
     private Exercise exercise;
     private User user;
-
-    public ExerciseTest() {
-    }
-
+    
     @Before
     public void setUp() {
         Timestamp timestamp = Timestamp.valueOf("2018-01-31 10:10:10.0");
         exercise = new Exercise(timestamp, 3600, 10.00);
         user = new User("user", "password");
         exercise.setUser(user);
-    }
-
-    @After
-    public void tearDown() {
     }
 
     @Test

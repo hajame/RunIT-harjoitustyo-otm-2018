@@ -15,9 +15,6 @@ public class StatisticsTest {
     private Exercise exercise;
     private Statistics statistics;
 
-    public StatisticsTest() {
-    }
-
     @Before
     public void setUp() {
         Timestamp timestamp = Timestamp.valueOf("2018-12-31 00:00:00.0");
@@ -28,7 +25,6 @@ public class StatisticsTest {
         }
         statistics = new Statistics();
         statistics.calculate(exercises);
-        
     }
 
     @Test

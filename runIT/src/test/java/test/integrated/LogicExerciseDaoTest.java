@@ -4,9 +4,7 @@ import java.io.File;
 import java.sql.Timestamp;
 import java.util.List;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import runit.dao.ExerciseDao;
@@ -22,9 +20,6 @@ public class LogicExerciseDaoTest {
     private User user;
     private Logic logic;
     private File file;
-
-    public LogicExerciseDaoTest() {
-    }
 
     @Before
     public void setUp() {
@@ -58,11 +53,6 @@ public class LogicExerciseDaoTest {
         assertEquals(comp.time(), exercise.time());
         assertEquals(comp.getDuration(), exercise.getDuration());
         assertEquals(comp.getUser().toString(), exercise.getUser().toString());
-    }
-    
-    @Test
-    public void badDataBaseAddress() {
-        
     }
     
     @Test
@@ -107,7 +97,6 @@ public class LogicExerciseDaoTest {
         for (Exercise a : logic.getUser().getHistory()) {
             historyString += a.toString();
         }
-
         assertEquals(compString, historyString);
     }
 }

@@ -20,9 +20,6 @@ public class LogicUserDaoTest {
     private Logic logic;
     private File file;
 
-    public LogicUserDaoTest() {
-    }
-
     @Before
     public void setUp() {
 
@@ -42,7 +39,6 @@ public class LogicUserDaoTest {
         ExerciseDao exerciseDao = new ExerciseDao(database);
         logic = new Logic(userDao, exerciseDao);
         logic.signupUser(user.getUsername(), user.getPassword());
-
     }
 
     @After
@@ -67,5 +63,4 @@ public class LogicUserDaoTest {
     public void signupUserThatAlreadyExistsTest() {
         assertEquals(logic.signupUser("test", "test"), "Username taken");
     }
-
 }
