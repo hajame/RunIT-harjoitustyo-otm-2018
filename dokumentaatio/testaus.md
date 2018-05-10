@@ -14,4 +14,14 @@ Sovelluslogiikkakerroksen luokille [Logic](https://github.com/hajame/otm-harjoit
 
 ### DAO-luokat
 
-Molempien DAO-luokkien toiminnallisuus on testattu luomalla testeissä tilapäinen tietokanta, joka poistetaan testien lopuksi.
+Molempien DAO-luokkien toiminnallisuus on testattu luomalla testeissä tilapäinen testitietokanta, joka poistetaan testien lopuksi.
+
+### Testikattavuus
+
+Käyttöliittymäkerrosta lukuunottamatta sovelluksen testauksen rivikattavuus on 93% ja haarautumakattavuus 79%.
+
+![testikattavuus](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/TestikattavuusRunIT.png)
+
+Testaamatta jäivät tilanteet, joissa käyttäjän kirjautuminen tai lisääminen ei onnistu tietokannan virheen, esimerkiksi korruptoitumisen takia. Myös moni Exercise-luokan equals-metodin useista haaroista jäi testaamatta, mikä laskee haarakattavuutta.
+
+
