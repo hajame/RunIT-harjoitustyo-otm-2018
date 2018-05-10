@@ -19,7 +19,7 @@ Ohjelma on harjoitustyö Helsingin Yliopiston kurssille Ohjelmistotekniikan mene
 
 
 ## Releaset 
-[runIT: Viikko5](https://github.com/hajame/otm-harjoitustyo/releases/tag/viikko5)
+[runIT: Viikko7](https://github.com/hajame/otm-harjoitustyo/releases/tag/viikko7)
 
 ## Komentorivitoiminnot
 
