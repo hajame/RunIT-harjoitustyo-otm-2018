@@ -10,9 +10,13 @@ Ohjelma on harjoitustyö kurssille Ohjelmistotekniikan menetelmät.
 
 [Vaatimusmäärittely](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
+[Arkkitehtuurikuvaus](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
+
+[Testausdokumentti](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/testaus.md)
+
 [Työaikakirjanpito](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 
-[Arkkitehtuurikuvaus](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
+
 
 ## Releaset 
 [runIT: Viikko5](https://github.com/hajame/otm-harjoitustyo/releases/tag/viikko5)
