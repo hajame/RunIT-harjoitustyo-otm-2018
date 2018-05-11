@@ -18,11 +18,11 @@ Molempien DAO-luokkien toiminnallisuus on testattu luomalla testeissä tilapäin
 
 ### Testauskattavuus
 
-Käyttöliittymäkerrosta lukuunottamatta sovelluksen testauksen rivikattavuus on 93% ja haarautumakattavuus 79%.
+Käyttöliittymäkerrosta lukuunottamatta sovelluksen testauksen rivikattavuus on 94% ja haarautumakattavuus 93%.
 
 ![testikattavuus](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/TestikattavuusRunIT.png)
 
-Testaamatta jäivät tilanteet, joissa käyttäjän kirjautuminen tai lisääminen ei onnistu tietokannan virheen, esimerkiksi korruptoitumisen takia. Myös moni Exercise-luokan equals-metodin useista haaroista jäi testaamatta, mikä laskee haarakattavuutta.
+Testaamatta jäivät tilanteet, joissa käyttäjän kirjautuminen tai lisääminen ei onnistu tietokannan virheen, esimerkiksi korruptoitumisen takia.
 
 ## Järjestelmätestaus
 
