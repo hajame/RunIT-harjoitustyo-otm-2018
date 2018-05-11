@@ -23,4 +23,5 @@
 | 6.5. | 4 | Palautteen läpikäynti (Issue). Harjoituksen tietojensyöttökenttien malliteksi (PromptText). Tietokantatiedoston nimi konfiguroitavissa. Käyttöohjeen päivitys. |
 | 9.5. | 9 | Paljon testejä, rivikattavuus > 90%. Testien pakkausrakenteen muutos. Harjoitusten järjestäminen päivän mukaan. Järjestelmän päiväyksen haku tietokenttiin. Ohjelman sulkeminen mistä tahansa näkymästä. Harjoitusten kokonaispituus ja -keston summary-näkymään. Javadoc tehty kaikille luokille paitsi GUI:lle.|
 | 10.5. | 7 | Testien siivoamista. JavaDoc valmis kaikille luokille. Testausdokumentti. Vaatimusmäärittelyn ja käyttöohjeen päivitys. |
-| yht   | 80    |    | 
+| 11.5. | 7 | Testien viimeistely. Vaatimusmäärittelyn, Arkkitehtuurikuvauksen ja muun dokumentaation päivitys ja hionta. |
+| yht   | 87    |    | 
