@@ -93,14 +93,14 @@ public class Exercise {
     public void setDistance(double distance) {
         this.distance = distance;
     }
-    
+
     /**
      * @return time in String format
      */
     public String time() {
         return time.toString().substring(0, 16);
     }
-    
+
     /**
      * @return duration in HH:MM:SS format
      */
@@ -114,7 +114,7 @@ public class Exercise {
 
     /**
      * @return Exercise in String format
-     */        
+     */
     @Override
     public String toString() {
         DecimalFormat doubleDecimal = new DecimalFormat("#0.00");
@@ -126,29 +126,18 @@ public class Exercise {
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
         final Exercise other = (Exercise) obj;
-        if (this.duration != other.duration) {
+        if ((Double.doubleToLongBits(this.avgSpeed) != Double.doubleToLongBits(other.avgSpeed))
+                || (this.duration != other.duration) 
+                || (Double.doubleToLongBits(this.distance) != Double.doubleToLongBits(other.distance))) {
             return false;
         }
-        if (Double.doubleToLongBits(this.avgSpeed) != Double.doubleToLongBits(other.avgSpeed)) {
-            return false;
-        }
-        if (Double.doubleToLongBits(this.distance) != Double.doubleToLongBits(other.distance)) {
-            return false;
-        }
-        if (!Objects.equals(this.user, other.user)) {
-            return false;
-        }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.time, other.time)) {
+        if (!Objects.equals(this.user, other.user) 
+                || !Objects.equals(this.id, other.id)
+                || !Objects.equals(this.time, other.time)) {
             return false;
         }
         return true;
