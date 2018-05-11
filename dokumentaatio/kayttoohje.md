@@ -62,7 +62,7 @@ Klikkaamalla _summary_, siirrytään yhteenveto-näkymään. Yhteenvetonäkymäs
 
 ![Yhteenveto-näkymä](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/summaryView.png)
 
-Klikkaamalla _exercises_, siiryt takaisin harjoitukset-näkymään.
+Klikkaamalla _exercises_, siirryt takaisin harjoitukset-näkymään.
 
 ## Ohjelmasta poistuminen
 
