@@ -20,9 +20,11 @@ Käyttöliittymä on pyritty eristämään täysin sovelluslogiikasta, se ainoas
 
 Kun sovelluksen harjoituslistan tilanne muuttuu, eli uusi käyttäjä kirjautuu, harjoitus luodaan tai poistetaan, kutsutaan sovelluksen metodia [redrawExerciseList](https://github.com/hajame/otm-harjoitustyo/blob/master/runIT/src/main/java/runit/ui/GUI.java#L60) joka renderöi harjoituslistan uudelleen sovelluslogiikalta saamansa päivitetyn listan perusteella.
 
+Kun siirrytään yhteenvetonäkymään (summary), käyttöliittymä hakee _Logic_ luokalta viitteen _Statistics_-tilasto-olioon, jolta saamansa tilastotiedot se asettaa käyttäjän näkyviin.
+
 ## Sovelluslogiikka
 
-Sovelluksen loogisen datamallin  muodostavat luokat [User](https://github.com/hajame/otm-harjoitustyo/blob/master/runIT/src/main/java/runit/domain/User.java) ja [Exercise](https://github.com/hajame/otm-harjoitustyo/blob/master/runIT/src/main/java/runit/domain/Exercise.java), jotka kuvaavat käyttäjiä ja heidän harjoituksiaan. Luokka [Statistics](https://github.com/hajame/otm-harjoitustyo/blob/master/runIT/src/main/java/runit/domain/Statistics.java) laskee harjoituksiin liittyvää tilastotietoa, jonka se säilöö yhteen keskiarvoarvoja edustavaan Exercise-olioon.
+Sovelluksen loogisen datamallin  muodostavat luokat [User](https://github.com/hajame/otm-harjoitustyo/blob/master/runIT/src/main/java/runit/domain/User.java) ja [Exercise](https://github.com/hajame/otm-harjoitustyo/blob/master/runIT/src/main/java/runit/domain/Exercise.java), jotka kuvaavat käyttäjiä ja heidän harjoituksiaan. Luokka [Statistics](https://github.com/hajame/otm-harjoitustyo/blob/master/runIT/src/main/java/runit/domain/Statistics.java) laskee ulkoisen [Apache Commons Math](https://mvnrepository.com/artifact/org.apache.commons/commons-math3/3.6.1) -kirjaston avulla harjoituksiin liittyvää tilastotietoa, jota se säilöö yhteen keskiarvoarvoja edustavaan Exercise-olioon.
 
 ![User-Exercise Relation](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/UserExerciseRelation.jpg)
 
@@ -34,7 +36,7 @@ Toiminnalisista kokonaisuuksista vastaa luokan [Logic](https://github.com/hajame
 - List<Exercise> getHistory()
 - Statistics getStatistics()
   
-_Logic_ pääsee käsiksi käyttäjiin ja harjoituksiin tietojen tallennuksesta vastaavan pakkauksessa runit.dao sijaitsevien Dao-rajapinnan toteuttavien UserDao ja ExerciseDao -luokkien kautta. Luokkien toteutukset injektoidaan sovelluslogiikalle konstruktorikutsun yhteydessä.
+_Logic_ pääsee käsiksi käyttäjiin ja harjoituksiin tietojen tallennuksesta vastaavan pakkauksessa runit.dao sijaitsevien Dao-rajapinnan toteuttavien UserDao ja ExerciseDao -luokkien kautta. Luokkien toteutukset injektoidaan sovelluslogiikalle konstruktorikutsun yhteydessä. Logic sisältää myös viitteen tilastotietoja sisältävään _Statistics_-olioon.
 
 __Ohjelman osien suhdetta kuvaava pakkaus/luokkakaavio:__
 
@@ -87,3 +89,15 @@ Kun harjoitukset-näkymässä painetaan Summary-nappia, tapahtuu seuraavaa:
 ![Yhteenvetonäkymään siiryminen](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/summaryViewSequence.jpg)
 
 Käyttöliittymä hakee sovelluslogiikalta Logic viitteen Statistics -tilasto-olioon. Käyttöliittymä pyytää tilasto-oliolta tilastotietoa, jonka se päivittää yhteenvetonäkymän kenttiin. Osa tiedoista on tallennettu keskiarvoista harjoitusta kuvaavaan Exercise-olioon nimeltä avgExercise, johon kättöliittymä saa viitteen tilasto-oliolta. Lopuksi käyttöliittymä vaihtaa näkymän yhteenvetonäkymään (Summary).
+
+### Muut toiminnallisuudet
+
+Sama periaate toistuu sovelluksen kaikissa toiminnallisuuksissa. Käyttöliittymän tapahtumakäsittelijä kutsuu sopivaa sovelluslogiikan metodia, sovelluslogiikka lisää, poistaa ja hakee harjoituksia tai lisää ja hakee käyttäjiä apunaan DAO-luokat. Kontrollin palatessa käyttöliittymään, päivitetään tarvittaessa harjoituslista sekä aktiivinen näkymä.
+
+## Ohjelman rakenteeseen jääneet heikkoudet
+
+### Käyttöliittymä
+
+Graafinen käyttöliittymä on toteutettu määrittelemällä lähes koko käyttöliittymän struktuuri luokan GUI metodissa start. Ainakin kaikkien sovelluksen neljän päänäkymän rakentava koodi olisi syytä erottaa omiksi metodeikseen tai kenties luokiksi. Tämä helpottaisi koodin lukemista ja nopeuttaisi vianhakua.
+
+Käyttöliittymän rakenteen ohjelmallisen määrittelyn voisi myös korvata FXML-määrittelyllä, tällöin sovelluslogiikan ja käyttöliittymän tapahtumankäsittelijöiden välinen kommunikointi ei hukkuisi GUI-elementtejä rakentavan koodin sekaan.
