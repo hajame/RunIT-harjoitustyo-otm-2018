@@ -66,6 +66,12 @@ Painikkeen painamiseen reagoiva tapahtumankäsittelijä kutsuu sovelluslogiikan 
 
 ### Uuden käyttäjän luominen
 
+![Uuden käyttäjän luominen](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/runIT%20addUserSequence.jpg)
+
+Create-painikkeen tapahtumankäsittelijä kutsuu sovelluslogiikan Logic metodia signupUser antaen parametriksi kirjautuneen käyttäjätunnuksen ja salasanan. Sovelluslogiikka selvittää UserDao:n avulla onko käyttäjätunnus olemassa. Jos ei, luodaan uusi käyttäjä tietokantaan. Tämän jälkeen haetaan tietokannasta käyttäjän tietokanta-tunnus eli id ja luodaan uusi käyttäjä, jolla on käyttäjänimen ja salasanan lisäksi tämä tietokantatunnus. Käyttäjä palautetaan sovelluslogiikalle. 
+
+Logiikka tarkistaa, että sen saamalla käyttäjällä on sama salasana kuin alkuperäisessä syötteessä. Jos salasana on sama, palautetaan viesti UI:lle, että käyttäjä on luotu.
+
 ### Harjoituksen lisääminen
 
 ### Yhteenvetonäkymään siirtyminen
