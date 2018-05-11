@@ -23,6 +23,7 @@ Kun sovelluksen harjoituslistan tilanne muuttuu, eli uusi käyttäjä kirjautuu,
 ## Sovelluslogiikka
 
 Sovelluksen loogisen datamallin  muodostavat luokat [User](https://github.com/hajame/otm-harjoitustyo/blob/master/runIT/src/main/java/runit/domain/User.java) ja [Exercise](https://github.com/hajame/otm-harjoitustyo/blob/master/runIT/src/main/java/runit/domain/Exercise.java), jotka kuvaavat käyttäjiä ja heidän harjoituksiaan. Luokka [Statistics](https://github.com/hajame/otm-harjoitustyo/blob/master/runIT/src/main/java/runit/domain/Statistics.java) laskee harjoituksiin liittyvää tilastotietoa, jonka se säilöö yhteen keskiarvoarvoja edustavaan Exercise-olioon.
+
 ![User-Exercise Relation](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/UserExerciseRelation.jpg)
 
 Toiminnalisista kokonaisuuksista vastaa luokan [Logic](https://github.com/hajame/otm-harjoitustyo/blob/master/runIT/src/main/java/runit/domain/Logic.java) ainoa olio. Luokka tarjoaa metodit käyttölittymän kaikille toiminnoille. Näitä ovat esim.
@@ -43,6 +44,31 @@ __Ohjelman osien suhdetta kuvaava pakkaus/luokkakaavio:__
 Pakkauksen runit.dao luokat UserDao ja ExerciseDao huolehtivat tietojen tallettamisesta SQLite-tietokantaan. Luokat noudattavat Data Access Object -suunnittelumallia.
 
 Sovelluslogiikan testauksessa hyödynnetäänkin tätä siten, että testeissä käytetään tiedostoon tallentavien DAO-olioiden sijaan keskusmuistiin tallentavia toteutuksia.
+
+### Tiedostot
+
+Sovelluksen juureen sijoitettu [konfiguraatiotiedosto](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md#konfigurointi) [config.properties](https://github.com/hajame/otm-harjoitustyo/blob/master/runIT/config.properties) määrittelee tietokantatideoston nimen.
+
+Käyttäjät ja harjoitukset tallennetaan SQLite3 tietokannan User ja Exercise tauluihin.
+
+Tietokantataulujen luontilauseet:
+
+```
+CREATE TABLE User (
+id integer PRIMARY KEY,
+username varchar(32) UNIQUE,
+password varchar(32)
+);
+
+CREATE TABLE Exercise (
+id integer PRIMARY KEY,
+user_id integer,
+time datetime,
+duration integer,
+distance real,
+FOREIGN KEY (user_id) References User(id)
+);
+```
 
 ### Päätoiminnallisuudet
 #### Käyttäjän kirjautuminen
