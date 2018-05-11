@@ -1,6 +1,6 @@
 # Käyttöohje
 
-Lataa tiedosto [runIT-1.0-SNAPSHOT.jar](https://github.com/hajame/otm-harjoitustyo/releases/tag/viikko7)
+Lataa tiedosto [runIT-1.0-SNAPSHOT.jar](https://github.com/hajame/otm-harjoitustyo/releases/tag/v1.0)
 
 Sovellus olettaa, että käyttäjä on asentanut Java v1.8:n ja SQLite 3:n.
 
