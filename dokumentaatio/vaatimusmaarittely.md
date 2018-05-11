@@ -4,7 +4,7 @@
 
 Sovelluksen avulla käyttäjien on mahdollista seurata oman kuntonsa kehitystä kirjaamalla juoksu- tai kävelylenkkeihin liittyvää tietoa. Sovellusta on mahdollista käyttää useamman rekisteröityneen käyttäjän, joilla on kaikilla oma yksilöllinen lenkkihistoriansa. 
 
-Ohjelma tarjoaa mahdollisuuden tarkastella yksittäisen lenkin tietoja. Lisäksi ohjelma esittää käyttäjälle koottua tietoa kunnon kehittymisestä näyttämällä tilastotietoa kaikista lenkeistä.
+Ohjelma tarjoaa mahdollisuuden tarkastella yksittäisen lenkin tietoja. Lisäksi ohjelma esittää käyttäjälle tilastotietoa kaikista hänen juoksemistaan lenkeistä.
 
 ## Käyttäjät
 
@@ -14,7 +14,7 @@ Sovelluksella on yksi käyttäjärooli, **normaali käyttäjä**. Sovelluksella 
 
 ![Hahmotelma käyttöliittymästä](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/UIMockUp2.png)
 
-Ohjelma avautuu kirjautumisnäkymään, josta voidaan siirtyä uuden käyttäjän luomiseen tai kotinäkymään. Kotinäkymässä käyttäjä voi tarkastella ja lisätä lenkkejä, poistua tai siirtyä tilastonäkymään, joka kertoo tilastotietoa käyttäjän harjoittelusta. 
+Ohjelma avautuu kirjautumisnäkymään, josta voidaan siirtyä uuden käyttäjän luomiseen tai harjoitusnäkymään. Harjoitusnäkymässä käyttäjä voi tarkastella ja lisätä lenkkejä, poistua tai siirtyä yhteenvetonäkymään, joka kertoo tilastotietoa käyttäjän harjoittelusta. 
 
 ## Perusversion tarjoama toiminnallisuus
 
