@@ -41,7 +41,7 @@ __Ohjelman osien suhdetta kuvaava pakkaus/luokkakaavio:__
 ![Class-PackageUML of runIT](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/runITclasspackage.jpg)
 
 ## Tietojen pysyväistallennus
-Pakkauksen runit.dao luokat UserDao ja ExerciseDao huolehtivat tietojen tallettamisesta SQLite-tietokantaan. Luokat noudattavat Data Access Object -suunnittelumallia.
+Pakkauksen runit.dao luokat UserDao ja ExerciseDao huolehtivat tietojen tallettamisesta SQL-tietokantaan. Luokat noudattavat Data Access Object -suunnittelumallia.
 
 Sovelluslogiikan testauksessa hyödynnetäänkin tätä siten, että testeissä käytetään tiedostoon tallentavien DAO-olioiden sijaan keskusmuistiin tallentavia toteutuksia.
 
@@ -49,30 +49,23 @@ Sovelluslogiikan testauksessa hyödynnetäänkin tätä siten, että testeissä 
 
 Sovelluksen juureen sijoitettu [konfiguraatiotiedosto](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md#konfigurointi) [config.properties](https://github.com/hajame/otm-harjoitustyo/blob/master/runIT/config.properties) määrittelee tietokantatideoston nimen.
 
-Käyttäjät ja harjoitukset tallennetaan SQLite3 tietokannan User ja Exercise tauluihin.
+Käyttäjät ja harjoitukset tallennetaan SQLite3-järjestelmän kontrolloiman SQL-tietokannan User ja Exercise -tietokantatauluihin.
 
-Tietokantataulujen luontilauseet:
+![Tietokantakaavio](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/TietokantakaavioRunIT.jpg)
 
-```
-CREATE TABLE User (
-id integer PRIMARY KEY,
-username varchar(32) UNIQUE,
-password varchar(32)
-);
+## Päätoiminnallisuudet
 
-CREATE TABLE Exercise (
-id integer PRIMARY KEY,
-user_id integer,
-time datetime,
-duration integer,
-distance real,
-FOREIGN KEY (user_id) References User(id)
-);
-```
+Kuvataan seuraavaksi sovelluksen toimintalogiikka muutaman päätoiminnallisuuden osalta sekvenssikaaviona.
 
-### Päätoiminnallisuudet
-#### Käyttäjän kirjautuminen
+### Käyttäjän kirjautuminen
 Kun kirjautumisnäkymässä on syötekenttään kirjoitettu käyttäjätunnus ja klikataan painiketta loginButton etenee sovelluksen kontrolli seuraavasti:
+
 ![Käyttäjän kirjautuminen](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/loginSequence.jpg)
 
 Painikkeen painamiseen reagoiva tapahtumankäsittelijä kutsuu sovelluslogiikan Logic metodia loginUser antaen parametriksi kirjautuneen käyttäjätunnuksen ja salasanan. Sovelluslogiikka selvittää UserDao:n avulla onko käyttäjätunnus olemassa. Jos on, eli kirjautuminen onnistuu, on seurauksena se että käyttöliittymä vaihtaa näkymäksi runitScenen, eli sovelluksen varsinaisen päänäkymän ja renderöi näkymään kirjautuneen käyttäjän Exerciset eli juoksuharjoitukset.
+
+### Uuden käyttäjän luominen
+
+### Harjoituksen lisääminen
+
+### Yhteenvetonäkymään siirtyminen
