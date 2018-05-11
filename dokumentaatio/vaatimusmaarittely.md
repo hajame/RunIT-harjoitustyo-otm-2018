@@ -42,7 +42,7 @@ Ohjelma avautuu kirjautumisnäkymään, josta voidaan siirtyä uuden käyttäjä
     - kesto 
     - keskinopeus
     - keskipituus
-- käyttäjä voi siityä takaisin harjoitusnkymään    
+- käyttäjä voi siityä takaisin harjoitusnäkymään    
 - käyttäjä voi kirjautua ulos järjestelmästä
 
 ## Jatkokehitysideoita
