@@ -74,10 +74,16 @@ Logiikka tarkistaa, että sen saamalla käyttäjällä on sama salasana kuin alk
 
 ### Harjoituksen lisääminen
 
-Kun harjoitukset-näkymässä on syötekenttiinn kirjoitettu harjoituksen tiedot ja klikataan painiketta createExercise (käyttäjälle "add"), etenee sovelluksen kontrolli seuraavasti:
+Kun harjoitukset-näkymässä syötekenttiin on kirjoitettu harjoituksen tiedot ja klikataan painiketta createExercise (käyttäjälle "add"), etenee sovelluksen kontrolli seuraavasti:
 
 ![Uuden harjoituksen lisääminen](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/addExerciseSequence.jpg)
 
 CreateExercise-painikkeen tapahtumankäsittelijä kutsuu sovelluslogiikan Logic metodia addExercise antaen parametriksi syötekentän tiedoista koostetun GUI-luokan:n luoman Exercise-olion. Sovelluslogiikka liittää harjoitukseen käyttäjän tiedot eli User-olion. Tämän jälkeen logiikka kutsuu ExerciseDaon metodia save, jonka syötteenä annetaan harjoitus. ExerciseDao lisää harjoitukseen tietokantaan, jonka jälkeen tämä hakee vielä tietokannasta harjoituksen tietokanta-tunnuksen eli id:n. Luokka luo näillä tiedoilla uuden Exercise-olion, joka palautetaan sovelluslogiikalle, joka palauttaa sen käyttöliittymälle. Käyttöliittymä päivittää harjoituslistan: se pyytää logiikalta harjoituslistan, jonka logiikka hakee tietokannasta ExerciseDaon avulla. Käyttöliittymä päivittää harjoitusnäkymän harjoituslistan uudelleen saamiensa harjoitusten perusteella, joka näkyy käyttäjälle lisättynä harjoituksena.
 
 ### Yhteenvetonäkymään siirtyminen
+
+Kun harjoitukset-näkymässä painetaan Summary-nappia, tapahtuu seuraavaa:
+
+![Yhteenvetonäkymään siiryminen](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/summaryViewSequence.jpg)
+
+Käyttöliittymä hakee sovelluslogiikalta Logic viitteen Statistics -tilasto-olioon. Käyttöliittymä pyytää tilasto-oliolta tilastotietoa, jonka se päivittää yhteenvetonäkymän kenttiin. Osa tiedoista on tallennettu keskiarvoista harjoitusta kuvaavaan Exercise-olioon nimeltä avgExercise, johon kättöliittymä saa viitteen tilasto-oliolta. Lopuksi käyttöliittymä vaihtaa näkymän yhteenvetonäkymään (Summary).
