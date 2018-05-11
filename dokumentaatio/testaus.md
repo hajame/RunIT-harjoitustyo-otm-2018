@@ -22,7 +22,7 @@ Käyttöliittymäkerrosta lukuunottamatta sovelluksen testauksen rivikattavuus o
 
 ![testikattavuus](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/TestikattavuusRunIT.png)
 
-Testaamatta jäivät tilanteet, joissa käyttäjän kirjautuminen tai lisääminen ei onnistu tietokannan virheen, esimerkiksi korruptoitumisen takia.
+Testaamatta jäivät tilanteet, joissa tietokantatoiminnot eivät onnistu tietokannan virheen, esimerkiksi korruptoitumisen takia. Jäi myös testaamatta tilanne , jossa ExerciseDao ei löydä pyydettyä harjoitusta findOne-metodilla.
 
 ## Järjestelmätestaus
 
