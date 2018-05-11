@@ -1,8 +1,8 @@
-# OTM-harjoitustyö: runIT
+# runIT
 
 Sovelluksen avulla käyttäjä voi pitää kirjaa juoksuharjoituksistaan. Sovellus tarjoaa käyttäjälle tilastotietoa harjoituksista yhteenvetonäkymässä. Sovellusta voi käyttää eri käyttäjätileillä, joilla on kaikilla omat harjoituksensa.
 
-Ohjelma on harjoitustyö Helsingin Yliopiston kurssille Ohjelmistotekniikan menetelmät.
+Ohjelma on harjoitustyö Helsingin Yliopiston kurssille Ohjelmistotekniikan menetelmät (OTM).
 
 ## Dokumentaatio
 
@@ -19,7 +19,7 @@ Ohjelma on harjoitustyö Helsingin Yliopiston kurssille Ohjelmistotekniikan mene
 
 
 ## Releaset 
-[runIT: Viikko7](https://github.com/hajame/otm-harjoitustyo/releases/tag/viikko7)
+[Loppupalautus: runIT](https://github.com/hajame/otm-harjoitustyo/releases/tag/1.0)
 
 ## Komentorivitoiminnot
 
@@ -30,13 +30,13 @@ Ohjelman voi suorittaa NetBeansin vihreällä napilla, tai terminaalissa kansios
 ```
 mvn compile exec:java -Dexec.mainClass=runit.ui.GUI
 ```
-Käynnissä olevan Dao-mallin toteutuksen vuoksi ohjelmaan ei voi vielä luoda uusia käyttäjiä tai harjoituksia. Voit kirjautua testikäyttäjänä tunnuksella _test_ ja salasanalla _pass_. Lisäksi voit tulostaa listan harjoituksista.
 
 ### Suoritettavan jarin generointi
 
 ```
 mvn package
 ```
+generoi hakemistoon _target_ suoritettavan jar-tiedoston runIT-1.0-SNAPSHOT.jar
 
 ### Testaus
 
