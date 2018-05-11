@@ -58,14 +58,14 @@ Käyttäjät ja harjoitukset tallennetaan SQLite3-järjestelmän kontrolloiman S
 Kuvataan seuraavaksi sovelluksen toimintalogiikka muutaman päätoiminnallisuuden osalta sekvenssikaaviona.
 
 ### Käyttäjän kirjautuminen
-Kun kirjautumisnäkymässä on syötekenttään kirjoitettu käyttäjätunnus ja klikataan painiketta loginButton etenee sovelluksen kontrolli seuraavasti:
+Kun kirjautumisnäkymässä on syötekenttään kirjoitettu käyttäjätunnus ja salasana, ja klikataan painiketta loginButton, etenee sovelluksen kontrolli seuraavasti:
 
 ![Käyttäjän kirjautuminen](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/loginSequence.jpg)
 
 Painikkeen painamiseen reagoiva tapahtumankäsittelijä kutsuu sovelluslogiikan Logic metodia loginUser antaen parametriksi kirjautuneen käyttäjätunnuksen ja salasanan. Sovelluslogiikka selvittää UserDao:n avulla onko käyttäjätunnus olemassa. Jos on, eli kirjautuminen onnistuu, on seurauksena se että käyttöliittymä vaihtaa näkymäksi runitScenen, eli sovelluksen varsinaisen päänäkymän ja renderöi näkymään kirjautuneen käyttäjän Exerciset eli juoksuharjoitukset.
 
 ### Uuden käyttäjän luominen
-
+Kun lisää uusi käyttäjä -näkymässä on syötekenttään kirjoitettu käyttäjätunnus sekä salasana ja klikataan painiketta createNewUserButton, etenee sovelluksen kontrolli seuraavasti:
 ![Uuden käyttäjän luominen](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/runIT%20addUserSequence.jpg)
 
 Create-painikkeen tapahtumankäsittelijä kutsuu sovelluslogiikan Logic metodia signupUser antaen parametriksi kirjautuneen käyttäjätunnuksen ja salasanan. Sovelluslogiikka selvittää UserDao:n avulla onko käyttäjätunnus olemassa. Jos ei, luodaan uusi käyttäjä tietokantaan. Tämän jälkeen haetaan tietokannasta käyttäjän tietokanta-tunnus eli id ja luodaan uusi käyttäjä, jolla on käyttäjänimen ja salasanan lisäksi tämä tietokantatunnus. Käyttäjä palautetaan sovelluslogiikalle. 
