@@ -6,15 +6,11 @@ Ohjelma on harjoitustyö Helsingin Yliopiston kurssille Ohjelmistotekniikan mene
 
 ## Dokumentaatio
 
-[Käyttöohje](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
-
-[Vaatimusmäärittely](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
-
-[Arkkitehtuurikuvaus](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
-
-[Testausdokumentti](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/testaus.md)
-
-[Työaikakirjanpito](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
+- __[Vaatimusmäärittely](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)__
+- [Arkkitehtuurikuvaus](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
+- [Testausdokumentti](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/testaus.md)
+- [Käyttöohje](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
+- [Työaikakirjanpito](https://github.com/hajame/otm-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 
 
 
