@@ -1,8 +1,10 @@
 # runIT
 
-Sovelluksen avulla käyttäjä voi pitää kirjaa juoksuharjoituksistaan. Sovellus tarjoaa käyttäjälle tilastotietoa harjoituksista yhteenvetonäkymässä. Sovellusta voi käyttää eri käyttäjätileillä, joilla on kaikilla omat harjoituksensa.
+> Ohjelma on harjoitustyö Helsingin Yliopiston kurssille Ohjelmistotekniikan menetelmät (OTM).
 
-Ohjelma on harjoitustyö Helsingin Yliopiston kurssille Ohjelmistotekniikan menetelmät (OTM).
+runIT:n avulla voi pitää kirjaa juoksuharjoituksistaan. Sovellus tarjoaa käyttäjälle tilastotietoa harjoituksista yhteenvetonäkymässä. Sovellusta voi käyttää eri käyttäjätileillä, joilla on kaikilla omat harjoituksensa.
+
+Ohjelma tarjoaa mahdollisuuden tarkastella yksittäisen lenkin tietoja. Lisäksi ohjelma esittää käyttäjälle tilastotietoa kaikista hänen juoksemistaan lenkeistä.
 
 ## Dokumentaatio
 
